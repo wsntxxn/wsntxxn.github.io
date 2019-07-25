@@ -71,12 +71,6 @@
   
 
   
-    
-      
-    
-
-    
-  
 
   
     
@@ -97,7 +91,7 @@
   
     
     
-    <link rel="stylesheet" href="//fonts.css.network/css?family=Courier New bold:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|SimSun:300,300italic,400,400italic,700,700italic|Helvetica:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+    <link rel="stylesheet" href="//fonts.css.network/css?family=Courier New bold:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|Helvetica:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -152,7 +146,7 @@
 <meta property="og:site_name" content="Xuenan Xu">
 <meta property="og:description" content="老实说，EM算法这玩意曾经一直是我心里一个坑，学了至少三遍 (周志华西瓜书第一遍，李航《统计学习方法》第二遍，导师暑假让搞懂这块是第三遍)才有了比较清楚的思路。跟着各种教程一行行看很容易陷入推导长长的公式的泥沼，到头来知道中间有用Jensen不等式放缩，知道要优化一个下界函数，但具体谈起细节来又不是那么清楚。这里我试图把我学习三次之后的理解分享一下，提供我自己理解EM算法的视角。 当然，看完这篇还">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-07-25T02:04:17.765Z">
+<meta property="og:updated_time" content="2019-07-25T02:08:18.125Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EM算法简介">
 <meta name="twitter:description" content="老实说，EM算法这玩意曾经一直是我心里一个坑，学了至少三遍 (周志华西瓜书第一遍，李航《统计学习方法》第二遍，导师暑假让搞懂这块是第三遍)才有了比较清楚的思路。跟着各种教程一行行看很容易陷入推导长长的公式的泥沼，到头来知道中间有用Jensen不等式放缩，知道要优化一个下界函数，但具体谈起细节来又不是那么清楚。这里我试图把我学习三次之后的理解分享一下，提供我自己理解EM算法的视角。 当然，看完这篇还">
@@ -443,7 +437,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-25 10:04:17" itemprop="dateModified" datetime="2019-07-25T10:04:17+08:00">2019-07-25</time>
+                <time title="Modified: 2019-07-25 10:08:18" itemprop="dateModified" datetime="2019-07-25T10:08:18+08:00">2019-07-25</time>
               </span>
             
           
@@ -511,7 +505,7 @@
 <li>不断重复第2、3步，直至收敛 (比如参数变化很小)</li>
 </ol>
 <h2 id="EM算法的推导"><a href="#EM算法的推导" class="headerlink" title="EM算法的推导"></a>EM算法的推导</h2><p>上面只是介绍了总体的思路，还是有很多问题，比如，为什么这么算是有效的？迭代下来似然一定会递增吗？具体如何最大化似然？<br>接下来就对EM算法进行一下推导和证明。</p>
-<h3 id="Auxiliary-Function-Q"><a href="#Auxiliary-Function-Q" class="headerlink" title="Auxiliary Function Q"></a>Auxiliary Function Q</h3><p>规定概率模型参数为$\theta$，共有$m$个样本：$x^{(1)}, x^{(2)},…, x^{(i)},…,x^{(m)}$，隐变量为$z$，似然为$L(\theta)$。<br>那么要最大化的似然就是<br>$$L(\theta) = \sum_{i=1}^m log P(x^{(i)}|\theta)$$<br>考虑隐变量$z$的影响，那么$P(x^{(i)}|\theta) = \sum \limits_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta)$，所以<br>$$L(\theta) = \sum_{i=1}^m log[\sum_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta)]$$<br>下面是关键的一步，规定$\hat\theta$为当前的参数值，可能是初始值也可能是迭代了几轮之后的参数值，总之是一组确定的值，那么<br>$$log P(x^{(i)}|\theta) = log\sum_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta) = log\sum_{z^{(i)}}[P(z^{(i)}|x^{(i)}, \hat\theta)\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}]$$<br>看到这大概要奇怪了，为啥要做先乘后除$P(z^{(i)}|x^{(i)}, \hat\theta)$这部分的操作呢？这就需要介绍著名的Jensen不等式了。<br>Jensen不等式可以通过凸函数的图像很直观地得出，这里就不讨论一般形式了，直接给出和EM算法有关的在log函数下的形式：<br>$$\sum_i^n\alpha_ilogx_i \leq log\sum_i^n\alpha_ix_i$$<br>其中$\alpha$满足$\sum \limits_{i=1}\limits^n\alpha_i = 1$，当且仅当$x_1 = x_2 = \ldots = x_n$时取等号。<br>这个不等式有个好处：右边是和的对数，经过放缩之后变成了对数的和。而实际上，$\sum \limits_{i=1}P(z^{(i)}|x^{(i)}, \hat\theta) = 1$，隐变量取到各个值的概率是1，刚好满足这个条件，这样一来应用Jensen不等式，$logP(x^{(i)}|\theta)$就转化成对数之和的形式，对$\theta$的优化就更加容易：<br>$$log\sum_{z^{(i)}}[P(z^{(i)}|x^{(i)}, \hat\theta)\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}] \geq \sum_{z^(i)}P(z^{(i)}|x^{(i)}, \hat\theta)log\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$$<br>所以<br>$$L(\theta) \geq \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta)log\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$$<br>于是我们成功地为原来难以直接优化的似然函数$L(\theta)$找到了一个形式为对数之和的，更好优化的下界 (虽然推导过程看起来像强行凑Jensen不等式，但数学上很多推导就是这么巧…)。<br>注意到$\hat\theta$是确定的值，所以上式中只有$P(x^{(i)}, z^{(i)}|\theta)$是不确定的部分，提出这部分就能得到我们的辅助函数 (Auxiliary Function) Q：<br>$$Q(\theta) = \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta)logP(x^{(i)}, z^{(i)}|\theta)$$<br>没错，真正用 MLE 的思路来求参数就是对这个 Auxiliary Function $Q(\theta)$，而不是对原始的似然函数$L(\theta)$求极大。</p>
+<h3 id="Auxiliary-Function-Q"><a href="#Auxiliary-Function-Q" class="headerlink" title="Auxiliary Function Q"></a>Auxiliary Function Q</h3><p>规定概率模型参数为$\theta$，共有$m$个样本：$x^{(1)}, x^{(2)},…, x^{(i)},…,x^{(m)}$，隐变量为$z$，似然为$L(\theta)$。<br>那么要最大化的似然就是<br>$$L(\theta) = \sum_{i=1}^m log P(x^{(i)}|\theta)$$<br>考虑隐变量$z$的影响，那么$P(x^{(i)}|\theta) = \sum \limits_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta)$，所以<br>$$L(\theta) = \sum_{i=1}^m log[\sum_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta)]$$<br>下面是关键的一步，规定$\hat\theta$为当前的参数值，可能是初始值也可能是迭代了几轮之后的参数值，总之是一组确定的值，那么<br>$$log P(x^{(i)}|\theta) = log\sum_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta) = log\sum_{z^{(i)}}[P(z^{(i)}|x^{(i)}, \hat\theta)\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}]$$<br>看到这大概要奇怪了，为啥要做先乘后除$P(z^{(i)}|x^{(i)}, \hat\theta)$这部分的操作呢？这就需要介绍著名的Jensen不等式了。<br>Jensen不等式可以通过凸函数的图像很直观地得出，这里就不讨论一般形式了，直接给出和EM算法有关的在log函数下的形式：<br>$$\sum_i^n\alpha_ilogx_i \leq log\sum_i^n\alpha_ix_i$$<br>其中$\alpha$满足$\sum \limits_{i=1}\limits^n\alpha_i = 1$，当且仅当$x_1 = x_2 = \ldots = x_n$时取等号。<br>这个不等式有个好处：右边是和的对数，经过放缩之后变成了对数的和。而实际上，$\sum \limits_{i=1}P(z^{(i)}|x^{(i)}, \hat\theta) = 1$，隐变量取到各个值的概率之和是1，刚好满足这个条件，这样一来应用Jensen不等式，$logP(x^{(i)}|\theta)$就转化成对数之和的形式，对$\theta$的优化就更加容易：<br>$$log\sum_{z^{(i)}}[P(z^{(i)}|x^{(i)}, \hat\theta)\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}] \geq \sum_{z^(i)}P(z^{(i)}|x^{(i)}, \hat\theta)log\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$$<br>所以<br>$$L(\theta) \geq \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta)log\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$$<br>于是我们成功地为原来难以直接优化的似然函数$L(\theta)$找到了一个形式为对数之和的，更好优化的下界 (虽然推导过程看起来像强行凑Jensen不等式，但数学上很多推导就是这么巧…)。<br>注意到$\hat\theta$是确定的值，所以上式中只有$P(x^{(i)}, z^{(i)}|\theta)$是不确定的部分，提出这部分就能得到我们的辅助函数 (Auxiliary Function) Q：<br>$$Q(\theta) = \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta)logP(x^{(i)}, z^{(i)}|\theta)$$<br>没错，真正用 MLE 的思路来求参数就是对这个 Auxiliary Function $Q(\theta)$，而不是对原始的似然函数$L(\theta)$求极大。</p>
 <h3 id="取等号的条件"><a href="#取等号的条件" class="headerlink" title="取等号的条件"></a>取等号的条件</h3><p>(未完待续)</p>
 
       
