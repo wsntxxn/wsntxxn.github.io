@@ -97,7 +97,7 @@
   
     
     
-    <link rel="stylesheet" href="//fonts.css.network/css?family=Courier New bold:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|SimSun:300,300italic,400,400italic,700,700italic|Helvetica:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+    <link rel="stylesheet" href="//fonts.css.network/css?family=Courier New:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|SimSun:300,300italic,400,400italic,700,700italic|Helvetica:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -153,7 +153,7 @@
 <meta property="og:description" content="老实说，EM算法这玩意曾经一直是我心里一个坑，学了至少三遍 (周志华西瓜书第一遍，李航《统计学习方法》第二遍，过了一年又回顾了一遍) 才有了比较清楚的思路。跟着各种教程一行行看很容易陷入推导长长的公式的泥沼，到头来知道中间有用Jensen不等式放缩，知道要优化一个下界函数，但具体谈起细节来又不是那么清楚。这里我试图把我学习三次之后的理解分享一下，提供我自己理解EM算法的视角。 当然，看完这篇还是不">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://wsntxxn.github.io/images/em_algo.png">
-<meta property="og:updated_time" content="2019-07-25T16:16:28.352Z">
+<meta property="og:updated_time" content="2019-07-25T16:17:48.138Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="EM算法简介">
 <meta name="twitter:description" content="老实说，EM算法这玩意曾经一直是我心里一个坑，学了至少三遍 (周志华西瓜书第一遍，李航《统计学习方法》第二遍，过了一年又回顾了一遍) 才有了比较清楚的思路。跟着各种教程一行行看很容易陷入推导长长的公式的泥沼，到头来知道中间有用Jensen不等式放缩，知道要优化一个下界函数，但具体谈起细节来又不是那么清楚。这里我试图把我学习三次之后的理解分享一下，提供我自己理解EM算法的视角。 当然，看完这篇还是不">
@@ -445,7 +445,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-26 00:16:28" itemprop="dateModified" datetime="2019-07-26T00:16:28+08:00">2019-07-26</time>
+                <time title="Modified: 2019-07-26 00:17:48" itemprop="dateModified" datetime="2019-07-26T00:17:48+08:00">2019-07-26</time>
               </span>
             
           
@@ -501,7 +501,7 @@
       
         <p>老实说，EM算法这玩意曾经一直是我心里一个坑，学了至少三遍 (周志华西瓜书第一遍，李航《统计学习方法》第二遍，过了一年又回顾了一遍) 才有了比较清楚的思路。跟着各种教程一行行看很容易陷入推导长长的公式的泥沼，到头来知道中间有用Jensen不等式放缩，知道要优化一个下界函数，但具体谈起细节来又不是那么清楚。这里我试图把我学习三次之后的理解分享一下，提供我自己理解EM算法的视角。</p>
 <p>当然，看完这篇还是不懂EM也是正常的，一来我水平有限，二来学习知识本来就是螺旋上升的过程。刚开始懵懵懂懂地记住一些东西，以后随着知识和项目的积累，回过头来再看这部分内容，也许哪一天就醍醐灌顶了。</p>
-<h2 id="EM算法概览"><a href="#EM算法概览" class="headerlink" title="EM算法概览"></a>EM算法概览</h2><h3 id="MLE"><a href="#MLE" class="headerlink" title="MLE"></a>MLE</h3><p>在正式接触EM算法之前，我们先回顾一下概率统计里面经典的参数估计方法 —— 最大化似然估计 (Maximum Likelihood Estimation)。这里所谓似然，就是指概率。实际上意思是说，我们现在有一个分布，但是参数未知，要估计这些参数，手头有的数据是从这个分布中采样得到的一些样本，那么通过最大化这些样本出现的概率来确定参数值。</p>
+<h2 id="EM算法概览"><a href="#EM算法概览" class="headerlink" title="EM算法概览"></a>EM算法概览</h2><h3 id="MLE"><a href="#MLE" class="headerlink" title="MLE"></a>MLE</h3><p>在正式接触EM算法之前，我们先回顾一下概率统计里面经典的参数估计方法——最大化似然估计 (Maximum Likelihood Estimation)。这里所谓似然，就是指概率。实际上意思是说，我们现在有一个分布，但是参数未知，要估计这些参数，手头有的数据是从这个分布中采样得到的一些样本，那么通过最大化这些样本出现的概率来确定参数值。</p>
 <p>举个例子，如果全校男生身高是服从高斯分布的，但我们不知道高斯分布的两个参数：均值$\mu$和方差$\sigma$，所以怎么办呢？既然已经有了概率分布的公式 (尽管有两个参数未知)，那么就按照高中数学中变量和参数的视角 (函数中将$x$看作自变量，其他未知数，比如$a$都看作已知的参数)，将这两个参数看成已知，求出这些男生的身高刚好是这些值的概率 (如果男生身高为$x$的概率为$p(x|\mu, \sigma)$)：<br>$$p(X) = p(x_1|\mu, \sigma)  p(x_2|\mu, \sigma)  …  p(x_n|\mu, \sigma)$$<br>那么好，这个$p(X)$，即样本点取这些值的概率，就是关于参数$\mu$和$\sigma$的函数，直接最大化这个概率就可以求出参数的估计值了，即：<br>$$\theta = \mathop{argmax}_\theta p(X)$$<br>实际求解的时候还是取了log，使得连乘变成求和，这样求导就比较方便。<br>所以说参数其实是选取的一组使得样本出现概率最大的值。</p>
 <h3 id="从MLE到EM"><a href="#从MLE到EM" class="headerlink" title="从MLE到EM"></a>从MLE到EM</h3><p>那么直接用MLE有啥问题吗？EM算法是解决什么问题的呢？<br>问题在于“隐变量”这个小可爱的出现，让似然的计算式里多出了隐变量的部分，无法直接对似然求最大。隐变量不属于模型参数，是无法直接观测到的，但又和参数一起对采样结果有直接的影响。</p>
 <p>还是举例来说明，经典的三硬币问题：<br>有三枚硬币A，B，C (正面率不一定是1/2)，先投掷A，如果是正面就投掷B，如果是反面就投掷C，若我们只能观测到最后的投掷结果 (B或者C的结果)，如何估算三颗硬币的正面率？<br>这里每次A的结果不能从观测变量中直接得到，因此A是一个隐变量。似然的计算式中就会出现$p(A是正面)$、$p(B是正面|A是正面)$等部分，无法全部用模型参数来表示了。</p>
