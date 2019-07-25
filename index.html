@@ -97,7 +97,7 @@
   
     
     
-    <link rel="stylesheet" href="//fonts.css.network/css?family=Courier New bold:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|SimSun:300,300italic,400,400italic,700,700italic|Helvetica:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
+    <link rel="stylesheet" href="//fonts.css.network/css?family=Courier New:300,300italic,400,400italic,700,700italic|Georgia:300,300italic,400,400italic,700,700italic|SimSun:300,300italic,400,400italic,700,700italic|Helvetica:300,300italic,400,400italic,700,700italic|Consolas:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext">
   
 
 
@@ -146,13 +146,13 @@
 
   <meta name="description" content="我随便写写，您随意看看">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Xuenan Xu">
+<meta property="og:title" content="xxn&#39;s learning">
 <meta property="og:url" content="https://wsntxxn.github.io/index.html">
-<meta property="og:site_name" content="Xuenan Xu">
+<meta property="og:site_name" content="xxn&#39;s learning">
 <meta property="og:description" content="我随便写写，您随意看看">
 <meta property="og:locale" content="zh-Hans">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xuenan Xu">
+<meta name="twitter:title" content="xxn&#39;s learning">
 <meta name="twitter:description" content="我随便写写，您随意看看">
 
 
@@ -172,7 +172,7 @@
 </script>
 
   
-  <title>Xuenan Xu</title>
+  <title>xxn's learning</title>
   
 
 
@@ -232,7 +232,7 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Xuenan Xu</span>
+        <span class="site-title">xxn's learning</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
@@ -387,13 +387,13 @@
     <link itemprop="mainEntityOfPage" href="https://wsntxxn.github.io/2019/07/24/EM算法简介/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xxn">
+      <meta itemprop="name" content="Xuenan Xu">
       <meta itemprop="description" content="我随便写写，您随意看看">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xuenan Xu">
+      <meta itemprop="name" content="xxn's learning">
     </span>
 
     
@@ -444,7 +444,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-07-25 10:08:18" itemprop="dateModified" datetime="2019-07-25T10:08:18+08:00">2019-07-25</time>
+                <time title="Modified: 2019-07-25 20:36:30" itemprop="dateModified" datetime="2019-07-25T20:36:30+08:00">2019-07-25</time>
               </span>
             
           
@@ -514,8 +514,12 @@
 <li>不断重复第2、3步，直至收敛 (比如参数变化很小)</li>
 </ol>
 <h2 id="EM算法的推导"><a href="#EM算法的推导" class="headerlink" title="EM算法的推导"></a>EM算法的推导</h2><p>上面只是介绍了总体的思路，还是有很多问题，比如，为什么这么算是有效的？迭代下来似然一定会递增吗？具体如何最大化似然？<br>接下来就对EM算法进行一下推导和证明。</p>
-<h3 id="Auxiliary-Function-Q"><a href="#Auxiliary-Function-Q" class="headerlink" title="Auxiliary Function Q"></a>Auxiliary Function Q</h3><p>规定概率模型参数为$\theta$，共有$m$个样本：$x^{(1)}, x^{(2)},…, x^{(i)},…,x^{(m)}$，隐变量为$z$，似然为$L(\theta)$。<br>那么要最大化的似然就是<br>$$L(\theta) = \sum_{i=1}^m log P(x^{(i)}|\theta)$$<br>考虑隐变量$z$的影响，那么$P(x^{(i)}|\theta) = \sum \limits_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta)$，所以<br>$$L(\theta) = \sum_{i=1}^m log[\sum_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta)]$$<br>下面是关键的一步，规定$\hat\theta$为当前的参数值，可能是初始值也可能是迭代了几轮之后的参数值，总之是一组确定的值，那么<br>$$log P(x^{(i)}|\theta) = log\sum_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta) = log\sum_{z^{(i)}}[P(z^{(i)}|x^{(i)}, \hat\theta)\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}]$$<br>看到这大概要奇怪了，为啥要做先乘后除$P(z^{(i)}|x^{(i)}, \hat\theta)$这部分的操作呢？这就需要介绍著名的Jensen不等式了。<br>Jensen不等式可以通过凸函数的图像很直观地得出，这里就不讨论一般形式了，直接给出和EM算法有关的在log函数下的形式：<br>$$\sum_i^n\alpha_ilogx_i \leq log\sum_i^n\alpha_ix_i$$<br>其中$\alpha$满足$\sum \limits_{i=1}\limits^n\alpha_i = 1$，当且仅当$x_1 = x_2 = \ldots = x_n$时取等号。<br>这个不等式有个好处：右边是和的对数，经过放缩之后变成了对数的和。而实际上，$\sum \limits_{i=1}P(z^{(i)}|x^{(i)}, \hat\theta) = 1$，隐变量取到各个值的概率之和是1，刚好满足这个条件，这样一来应用Jensen不等式，$logP(x^{(i)}|\theta)$就转化成对数之和的形式，对$\theta$的优化就更加容易：<br>$$log\sum_{z^{(i)}}[P(z^{(i)}|x^{(i)}, \hat\theta)\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}] \geq \sum_{z^(i)}P(z^{(i)}|x^{(i)}, \hat\theta)log\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$$<br>所以<br>$$L(\theta) \geq \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta)log\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$$<br>于是我们成功地为原来难以直接优化的似然函数$L(\theta)$找到了一个形式为对数之和的，更好优化的下界 (虽然推导过程看起来像强行凑Jensen不等式，但数学上很多推导就是这么巧…)。<br>注意到$\hat\theta$是确定的值，所以上式中只有$P(x^{(i)}, z^{(i)}|\theta)$是不确定的部分，提出这部分就能得到我们的辅助函数 (Auxiliary Function) Q：<br>$$Q(\theta) = \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta)logP(x^{(i)}, z^{(i)}|\theta)$$<br>没错，真正用 MLE 的思路来求参数就是对这个 Auxiliary Function $Q(\theta)$，而不是对原始的似然函数$L(\theta)$求极大。</p>
-<h3 id="取等号的条件"><a href="#取等号的条件" class="headerlink" title="取等号的条件"></a>取等号的条件</h3><p>(未完待续)</p>
+<h3 id="Auxiliary-Function-Q"><a href="#Auxiliary-Function-Q" class="headerlink" title="Auxiliary Function Q"></a>Auxiliary Function Q</h3><p>规定概率模型参数为$\theta$，共有$m$个样本：$x^{(1)}, x^{(2)},…, x^{(i)},…,x^{(m)}$，隐变量为$z$，似然为$L(\theta)$。<br>那么要最大化的似然就是<br>$$L(\theta) = \sum_{i=1}^m log P(x^{(i)}|\theta)$$<br>考虑隐变量$z$的影响，那么$P(x^{(i)}|\theta) = \sum \limits_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta)$，所以<br>$$L(\theta) = \sum_{i=1}^m log[\sum_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta)]$$<br>下面是关键的一步，规定$\hat\theta$为当前的参数值，可能是初始值也可能是迭代了几轮之后的参数值，总之是一组确定的值，那么<br>$$log P(x^{(i)}|\theta) = log\sum_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta) = log\sum_{z^{(i)}}[P(z^{(i)}|x^{(i)}, \hat\theta)\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}]$$<br>看到这大概要奇怪了，为啥要做先乘后除$P(z^{(i)}|x^{(i)}, \hat\theta)$这部分的操作呢？这就需要介绍著名的Jensen不等式了。<br>Jensen不等式可以通过凸函数的图像很直观地得出，这里就不讨论一般形式了，直接给出和EM算法有关的在log函数下的形式：<br>$$\sum_i^n\alpha_ilogx_i \leq log\sum_i^n\alpha_ix_i$$<br>其中$\alpha$满足$\sum \limits_{i=1}\limits^n\alpha_i = 1$，当且仅当$x_1 = x_2 = \ldots = x_n$时取等号。<br>这个不等式有个好处：右边是和的对数，经过放缩之后变成了对数的和。而实际上，$\sum \limits_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta) = 1$，隐变量取到各个值的概率之和是1，刚好满足这个条件，这样一来应用Jensen不等式，$logP(x^{(i)}|\theta)$就转化成对数之和的形式，对$\theta$的优化就更加容易：<br>$$log\sum_{z^{(i)}}[P(z^{(i)}|x^{(i)}, \hat\theta)\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}] \geq \sum_{z^(i)}P(z^{(i)}|x^{(i)}, \hat\theta)log\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$$<br>所以<br>$$L(\theta) \geq \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta)log\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$$<br>于是我们成功地为原来难以直接优化的似然函数$L(\theta)$找到了一个形式为对数之和的，更好优化的下界 (虽然推导过程看起来像强行凑Jensen不等式，但数学上很多推导就是这么巧…)，不妨称之为$B(\theta)$。<br>注意到$\hat\theta$是确定的值，所以上式中只有$P(x^{(i)}, z^{(i)}|\theta)$是不确定的部分，提出这部分就能得到我们的辅助函数 (Auxiliary Function) Q：<br>$$Q(\theta) = \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta)logP(x^{(i)}, z^{(i)}|\theta)$$<br>没错，真正用 MLE 的思路来求参数就是对这个 Auxiliary Function $Q(\theta)$，而不是对原始的似然函数$L(\theta)$求极大。</p>
+<h3 id="取等号的条件"><a href="#取等号的条件" class="headerlink" title="取等号的条件"></a>取等号的条件</h3><p>相信看到这里，你一定觉得哪里不对：通过Jensen不等式能够放缩到一个对数之和的$B$函数的形式，但是仅仅满足$L(\theta) \geq B(\theta)$这个条件，对$Q$求极大(也就是对$B$求极大)得到的$\theta$并不能保证$L$也增大呀。事实上，刚刚不等式放缩的过程中的确有一项内容被忽略了：取等号的条件。<br>将$x_1 = x_2 = \ldots = x_n$的条件应用到这里，就是对于各个$z^{(i)}$，$\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$都相等，不妨令<br>$$\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)} = c (constant)$$<br>$$P(x^{(i)}, z^{(i)}|\theta) = c\cdot P(z^{(i)}|x^{(i)}, \hat\theta)$$<br>等式两边同时对$z^{(i)}$求和：<br>$$\sum_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta) = c \sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta)$$<br>$$P(x^{(i)}|\theta) = c$$<br>求得常数c之后再把c回带到上面的等式中：<br>$$P(x^{(i)}|\theta) = \frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$$<br>$$P(z^{(i)}|x^{(i)}, \hat\theta) = \frac{P(x^{(i)}, z^{(i)}|\theta)}{P(x^{(i)}|\theta)} = P(z^{(i)}|x^{(i)}, \theta)$$<br>于是我们得到取等号的条件实际上就是：<br>$$\theta = \hat\theta$$<br>当参数值取当前参数的时候，Jensen不等式取等号！</p>
+<h3 id="图形角度看EM算法"><a href="#图形角度看EM算法" class="headerlink" title="图形角度看EM算法"></a>图形角度看EM算法</h3><p>换个视角来看，$L(\theta)$和$B(\theta)$都是关于$\theta$的函数，它们满足(1) $L(\theta) \geq B(\theta)$ (2) 只有一个点满足两者相等，即$\hat\theta$<br>那么画个图，就能很轻松地看出优化过程中$B(\theta)$的变化了：<br><img src="/images/em_algo.png" alt="迭代过程中B函数的变化"><br>图片是我从网上随便找的，符号和前面略有不同，图中红色的$F$对应前面的目标似然函数$L$，蓝色和绿色的两条$G$对应前面的下界函数$B$，注意到$B$也受$\hat\theta$的影响，每一轮的$B$函数是不一样的，蓝色的线对应第t轮，绿色的线对应第t+1轮。<br>这张图很好地反映了$B$的变化：每一轮迭代之前，$L$和$B$是相等的，经过一次迭代，$\theta$跑到了$B$取得极大的位置，而$L(\theta) \geq B(\theta)$，所以$L(\theta)$也变大了。于是到下一轮，新的$B$函数在新的$\theta$处又和$L$相等，进入了和上次迭代之前相同的状态。如此不断迭代下去，$L(\theta)$就不断变大，朝着我们最初最大化似然的目标不断前进。</p>
+<h3 id="数学证明"><a href="#数学证明" class="headerlink" title="数学证明"></a>数学证明</h3><p>什么，你说这样不够严谨？好，那从数学角度证明一遍$L(\theta)$递增呗。<br>令$\theta^{t+1}$和$\theta^t$分别表示第t+1轮和第t轮的参数值，那么需要证明的就是$L(\theta^{t+1}) \geq L(\theta^t)$。<br>由于$\theta^{t+1}$定义就是对$Q(\theta, \theta^t)$求极大得到的，所以$Q(\theta^{t+1}, \theta^t) \geq Q(\theta^t, \theta^t)$天然成立，不妨看看$L(\theta)$和$Q(\theta, \theta^t)$相比差了啥：<br>$$L(\theta) = \sum_{i=1}^m log P(x^{(i)}|\theta)$$<br>$$Q(\theta, \theta^t) = \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \theta^t)logP(x^{(i)}, z^{(i)}|\theta)$$<br>把$L(\theta)$也加上对$z^{(i)}$求和的部分，和$Q(\theta, \theta^t)$对应起来：<br>$$L(\theta) = \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \theta^t)log P(x^{(i)}|\theta)$$<br>然后两式相减，得到：<br>$$Q(\theta, \theta^t) - L(\theta) = \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \theta^t) log\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(x^{(i)}|\theta)} = \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \theta^t) logP(z^{(i)}|x^{(i)}, \theta)$$<br>令这个函数为$H(\theta, \theta^t)$(如果了解信息熵会发现真的很符合信息熵的定义啊，叫H没毛病)，所以<br>$$L(\theta) = Q(\theta, \theta^t) - H(\theta, \theta^t)$$<br>$$L(\theta^{t+1}) - L(\theta^t) = [Q(\theta^{t+1}, \theta^t) - Q(\theta^t, \theta^t)] - [H(\theta^{t+1}, \theta^t) - H(\theta^t, \theta^t)]$$<br>第一项已经是非负了，so只要保证第二项非正即可。于是：<br>\begin{equation}\begin{split}<br>H(\theta^{t+1}, \theta^t) - H(\theta^t, \theta^t) &amp;= \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \theta^t)log\frac{P(z^{(i)}|x^{(i)}, \theta^{t+1})}{P(z^{(i)}|x^{(i)}, \theta^t)}\\<br>&amp;\leq \sum_{i=1}^mlog\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \theta^t)\frac{P(z^{(i)}|x^{(i)}, \theta^{t+1})}{P(z^{(i)}|x^{(i)}, \theta^t)}\\<br>&amp;=\sum_{i=1}log\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \theta^{t+1})\\<br>&amp;=0\\<br>\end{split}\end{equation}<br>很好，这里又用了一次Jensen不等式，和前面一样，也是因为隐变量取到各个值概率之和为1。于是第二项顺利证出非正，$L(\theta)$似然函数的递增性证明完成。</p>
+<h2 id="EM算法的应用"><a href="#EM算法的应用" class="headerlink" title="EM算法的应用"></a>EM算法的应用</h2><p>恭喜，经过一大波公式，我们已经成功地推导并证明了EM算法。当然，上面推导的过程中，也可以先不给出$P(z^{(i)}|x^{(i)}, \hat\theta)$这个式子，而是按照Jensen不等式的条件，假设有个跟$z^{(i)}$有关的表达式，比如叫$F(z^{(i)})$，加起来为1，这样直接用Jensen不等式放缩，最后求取等号的条件会发现，$F(z^{(i)}) = P(z^{(i)}|x^{(i)}, \hat\theta)$，同样得出这个因子就是隐变量在样本和当前参数下的分布，看到有些教程就是按这个思路来写的。<br>这样一来，上面写的EM算法的总体思路就很好理解了，核心就是进行这样的迭代：<br>(1) 用样本和当前参数估计每个样本隐变量$z^{(i)}$的分布<br>(2) 以隐变量的分布为已知，优化$Q$函数，求出此时使$Q$最大的参数$\theta$，作为下一轮迭代的初始参数</p>
+<p>在我所接触的语音这一块，EM算法有两个经典的应用：(1) GMM模型的参数求解 (2) HMM模型的参数求解<br>在此先挖个坑，在接下来的两篇中将会简要地推导一下EM算法在GMM和HMM中的求解过程。。。</p>
 
           
         
@@ -577,13 +581,13 @@
     <link itemprop="mainEntityOfPage" href="https://wsntxxn.github.io/2019/04/23/firstblog/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xxn">
+      <meta itemprop="name" content="Xuenan Xu">
       <meta itemprop="description" content="我随便写写，您随意看看">
       <meta itemprop="image" content="/images/avatar.gif">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xuenan Xu">
+      <meta itemprop="name" content="xxn's learning">
     </span>
 
     
@@ -774,7 +778,7 @@
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
   
-  <p class="site-author-name" itemprop="name">xxn</p>
+  <p class="site-author-name" itemprop="name">Xuenan Xu</p>
   <div class="site-description motion-element" itemprop="description">我随便写写，您随意看看</div>
 </div>
 
@@ -901,7 +905,7 @@
   <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
-  <span class="author" itemprop="copyrightHolder">xxn</span>
+  <span class="author" itemprop="copyrightHolder">Xuenan Xu</span>
 
   
 
