@@ -144,16 +144,18 @@
   };
 </script>
 
-  <meta name="description" content="我随便写写，您随意看看">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Xuenan Xu">
-<meta property="og:url" content="https://wsntxxn.github.io/index.html">
+  <meta name="description" content="老实说，EM算法这玩意曾经一直是我心里一个坑，学了至少三遍 (周志华西瓜书第一遍，李航《统计学习方法》第二遍，导师暑假让搞懂这块是第三遍)才有了比较清楚的思路。跟着各种教程一行行看很容易陷入推导长长的公式的泥沼，到头来知道中间有用Jensen不等式放缩，知道要优化一个下界函数，但具体谈起细节来又不是那么清楚。这里我试图把我学习三次之后的理解分享一下，提供我自己理解EM算法的视角。 当然，看完这篇还">
+<meta name="keywords" content="基础机器学习,EM算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="EM算法简介">
+<meta property="og:url" content="https://wsntxxn.github.io/2019/07/24/EM算法简介/index.html">
 <meta property="og:site_name" content="Xuenan Xu">
-<meta property="og:description" content="我随便写写，您随意看看">
+<meta property="og:description" content="老实说，EM算法这玩意曾经一直是我心里一个坑，学了至少三遍 (周志华西瓜书第一遍，李航《统计学习方法》第二遍，导师暑假让搞懂这块是第三遍)才有了比较清楚的思路。跟着各种教程一行行看很容易陷入推导长长的公式的泥沼，到头来知道中间有用Jensen不等式放缩，知道要优化一个下界函数，但具体谈起细节来又不是那么清楚。这里我试图把我学习三次之后的理解分享一下，提供我自己理解EM算法的视角。 当然，看完这篇还">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-25T02:04:17.765Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Xuenan Xu">
-<meta name="twitter:description" content="我随便写写，您随意看看">
+<meta name="twitter:title" content="EM算法简介">
+<meta name="twitter:description" content="老实说，EM算法这玩意曾经一直是我心里一个坑，学了至少三遍 (周志华西瓜书第一遍，李航《统计学习方法》第二遍，导师暑假让搞懂这块是第三遍)才有了比较清楚的思路。跟着各种教程一行行看很容易陷入推导长长的公式的泥沼，到头来知道中间有用Jensen不等式放缩，知道要优化一个下界函数，但具体谈起细节来又不是那么清楚。这里我试图把我学习三次之后的理解分享一下，提供我自己理解EM算法的视角。 当然，看完这篇还">
 
 
 
@@ -161,7 +163,7 @@
 
   
   
-  <link rel="canonical" href="https://wsntxxn.github.io/">
+  <link rel="canonical" href="https://wsntxxn.github.io/2019/07/24/EM算法简介/">
 
 
 
@@ -172,7 +174,7 @@
 </script>
 
   
-  <title>Xuenan Xu</title>
+  <title>EM算法简介 | Xuenan Xu</title>
   
 
 
@@ -220,8 +222,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
-  page-home">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -263,7 +264,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -367,9 +368,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -401,10 +402,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/24/EM算法简介/" class="post-title-link" itemprop="url">EM算法简介</a>
+          <h1 class="post-title" itemprop="name headline">EM算法简介
+
               
             
           </h1>
@@ -498,9 +497,7 @@
       
 
       
-        
-          
-            <p>老实说，EM算法这玩意曾经一直是我心里一个坑，学了至少三遍 (周志华西瓜书第一遍，李航《统计学习方法》第二遍，导师暑假让搞懂这块是第三遍)才有了比较清楚的思路。跟着各种教程一行行看很容易陷入推导长长的公式的泥沼，到头来知道中间有用Jensen不等式放缩，知道要优化一个下界函数，但具体谈起细节来又不是那么清楚。这里我试图把我学习三次之后的理解分享一下，提供我自己理解EM算法的视角。</p>
+        <p>老实说，EM算法这玩意曾经一直是我心里一个坑，学了至少三遍 (周志华西瓜书第一遍，李航《统计学习方法》第二遍，导师暑假让搞懂这块是第三遍)才有了比较清楚的思路。跟着各种教程一行行看很容易陷入推导长长的公式的泥沼，到头来知道中间有用Jensen不等式放缩，知道要优化一个下界函数，但具体谈起细节来又不是那么清楚。这里我试图把我学习三次之后的理解分享一下，提供我自己理解EM算法的视角。</p>
 <p>当然，看完这篇还是不懂EM也是正常的，一来我水平有限，二来学习知识本来就是螺旋上升的过程。刚开始懵懵懂懂地记住一些东西，以后随着知识和项目的积累，回过头来再看这部分内容，也许哪一天就醍醐灌顶了。</p>
 <h2 id="EM算法概览"><a href="#EM算法概览" class="headerlink" title="EM算法概览"></a>EM算法概览</h2><h3 id="MLE"><a href="#MLE" class="headerlink" title="MLE"></a>MLE</h3><p>在正式接触EM算法之前，我们先回顾一下概率统计里面经典的参数估计方法 —— 最大化似然估计 (Maximum Likelihood Estimation)。这里所谓似然，就是指概率。实际上意思是说，我们现在有一个分布，但是参数未知，要估计这些参数，手头有的数据是从这个分布中采样得到的一些样本，那么通过最大化这些样本出现的概率来确定参数值。</p>
 <p>举个例子，如果全校男生身高是服从高斯分布的，但我们不知道高斯分布的两个参数：均值$\mu$和方差$\sigma$，所以怎么办呢？既然已经有了概率分布的公式 (尽管有两个参数未知)，那么就按照高中数学中变量和参数的视角 (函数中将$x$看作自变量，其他未知数，比如$a$都看作已知的参数)，将这两个参数看成已知，求出这些男生的身高刚好是这些值的概率 (如果男生身高为$x$的概率为$p(x|\mu, \sigma)$)：<br>$$p(X) = p(x_1|\mu, \sigma)  p(x_2|\mu, \sigma)  …  p(x_n|\mu, \sigma)$$<br>那么好，这个$p(X)$，即样本点取这些值的概率，就是关于参数$\mu$和$\sigma$的函数，直接最大化这个概率就可以求出参数的估计值了，即：<br>$$\theta = \mathop{argmax}_\theta p(X)$$<br>实际求解的时候还是取了log，使得连乘变成求和，这样求导就比较方便。<br>所以说参数其实是选取的一组使得样本出现概率最大的值。</p>
@@ -517,13 +514,13 @@
 <h3 id="Auxiliary-Function-Q"><a href="#Auxiliary-Function-Q" class="headerlink" title="Auxiliary Function Q"></a>Auxiliary Function Q</h3><p>规定概率模型参数为$\theta$，共有$m$个样本：$x^{(1)}, x^{(2)},…, x^{(i)},…,x^{(m)}$，隐变量为$z$，似然为$L(\theta)$。<br>那么要最大化的似然就是<br>$$L(\theta) = \sum_{i=1}^m log P(x^{(i)}|\theta)$$<br>考虑隐变量$z$的影响，那么$P(x^{(i)}|\theta) = \sum \limits_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta)$，所以<br>$$L(\theta) = \sum_{i=1}^m log[\sum_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta)]$$<br>下面是关键的一步，规定$\hat\theta$为当前的参数值，可能是初始值也可能是迭代了几轮之后的参数值，总之是一组确定的值，那么<br>$$log P(x^{(i)}|\theta) = log\sum_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta) = log\sum_{z^{(i)}}[P(z^{(i)}|x^{(i)}, \hat\theta)\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}]$$<br>看到这大概要奇怪了，为啥要做先乘后除$P(z^{(i)}|x^{(i)}, \hat\theta)$这部分的操作呢？这就需要介绍著名的Jensen不等式了。<br>Jensen不等式可以通过凸函数的图像很直观地得出，这里就不讨论一般形式了，直接给出和EM算法有关的在log函数下的形式：<br>$$\sum_i^n\alpha_ilogx_i \leq log\sum_i^n\alpha_ix_i$$<br>其中$\alpha$满足$\sum \limits_{i=1}\limits^n\alpha_i = 1$，当且仅当$x_1 = x_2 = \ldots = x_n$时取等号。<br>这个不等式有个好处：右边是和的对数，经过放缩之后变成了对数的和。而实际上，$\sum \limits_{i=1}P(z^{(i)}|x^{(i)}, \hat\theta) = 1$，隐变量取到各个值的概率是1，刚好满足这个条件，这样一来应用Jensen不等式，$logP(x^{(i)}|\theta)$就转化成对数之和的形式，对$\theta$的优化就更加容易：<br>$$log\sum_{z^{(i)}}[P(z^{(i)}|x^{(i)}, \hat\theta)\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}] \geq \sum_{z^(i)}P(z^{(i)}|x^{(i)}, \hat\theta)log\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$$<br>所以<br>$$L(\theta) \geq \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta)log\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$$<br>于是我们成功地为原来难以直接优化的似然函数$L(\theta)$找到了一个形式为对数之和的，更好优化的下界 (虽然推导过程看起来像强行凑Jensen不等式，但数学上很多推导就是这么巧…)。<br>注意到$\hat\theta$是确定的值，所以上式中只有$P(x^{(i)}, z^{(i)}|\theta)$是不确定的部分，提出这部分就能得到我们的辅助函数 (Auxiliary Function) Q：<br>$$Q(\theta) = \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta)logP(x^{(i)}, z^{(i)}|\theta)$$<br>没错，真正用 MLE 的思路来求参数就是对这个 Auxiliary Function $Q(\theta)$，而不是对原始的似然函数$L(\theta)$求极大。</p>
 <h3 id="取等号的条件"><a href="#取等号的条件" class="headerlink" title="取等号的条件"></a>取等号的条件</h3><p>(未完待续)</p>
 
-          
-        
       
     </div>
 
     
 
+    
+      
     
 
     
@@ -541,197 +538,41 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wsntxxn.github.io/2019/04/23/firstblog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="xxn">
-      <meta itemprop="description" content="我随便写写，您随意看看">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Xuenan Xu">
-    </span>
-
-    
-      <header class="post-header">
-
         
+          
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/23/firstblog/" class="post-title-link" itemprop="url">firstblog</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
+        <div class="post-tags">
           
+            <a href="/tags/基础机器学习/" rel="tag"># 基础机器学习</a>
           
+            <a href="/tags/EM算法/" rel="tag"># EM算法</a>
           
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-23 16:23:59" itemprop="dateCreated datePublished" datetime="2019-04-23T16:23:59+08:00">2019-04-23</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-07-24 15:36:00" itemprop="dateModified" datetime="2019-07-24T15:36:00+08:00">2019-07-24</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Testing/" itemprop="url" rel="index"><span itemprop="name">Testing</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="Title"><a href="#Title" class="headerlink" title="Title"></a>Title</h2><p>English testing.</p>
-<p>中文测试。</p>
-<h2 id="Standard-HTML-element"><a href="#Standard-HTML-element" class="headerlink" title="Standard HTML element"></a>Standard HTML element</h2><button><br>Button<br></button>
-
-<p><a href="https://www.baidu.com" target="_blank" rel="noopener">Baidu</a></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line">padded, lengths = nn.rnn.utils.pad_packed_sequence(packed)</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'window loaded'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="Math-Equation"><a href="#Math-Equation" class="headerlink" title="Math Equation"></a>Math Equation</h2><p>$f(x)=ax+b$</p>
-<p>$$f(x)=ax+b$$</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/04/23/firstblog/" rel="next" title="firstblog">
+                <i class="fa fa-chevron-left"></i> firstblog
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -741,14 +582,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -768,8 +610,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -882,6 +733,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#EM算法概览"><span class="nav-number">1.</span> <span class="nav-text">EM算法概览</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MLE"><span class="nav-number">1.1.</span> <span class="nav-text">MLE</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从MLE到EM"><span class="nav-number">1.2.</span> <span class="nav-text">从MLE到EM</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#EM的总体思路"><span class="nav-number">1.3.</span> <span class="nav-text">EM的总体思路</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#EM算法的推导"><span class="nav-number">2.</span> <span class="nav-text">EM算法的推导</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Auxiliary-Function-Q"><span class="nav-number">2.1.</span> <span class="nav-text">Auxiliary Function Q</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#取等号的条件"><span class="nav-number">2.2.</span> <span class="nav-text">取等号的条件</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1019,6 +887,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
 
   <script src="/js/next-boot.js?v=7.2.0"></script>
 
@@ -1033,14 +905,6 @@
   
 
   
-  
-    
-      
-        
-      
-    
-      
-    
   
 
   
@@ -1094,6 +958,8 @@
 
 
 
+
+  
 
 
 
