@@ -154,7 +154,7 @@ template {
 body {
   position: relative;
   font-family: 'Courier New bold', "PingFang SC", "Microsoft YaHei", sans-serif;
-  font-size: 10px;
+  font-size: 5px;
   line-height: 2;
   color: #555;
   background: #f5f7f9;
@@ -166,7 +166,7 @@ body {
 }
 @media (min-width: 1200px) {
   body {
-    font-size: 12px;
+    font-size: 7px;
   }
 }
 h1,
@@ -1211,7 +1211,7 @@ pre .javascript .function {
 .post-body {
   overflow-wrap: break-word;
   word-wrap: break-word;
-  font-family: 'Courier New bold', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Courier New', 'Courier New bold', "PingFang SC", "Microsoft YaHei", sans-serif;
 }
 .post-body span.exturl .fa {
   font-size: 14px;
@@ -1227,7 +1227,7 @@ pre .javascript .function {
 .post-body .figure .caption {
   margin: -20px auto 15px;
   text-align: center;
-  font-size: 10px;
+  font-size: 5px;
   color: #999;
   font-weight: bold;
   line-height: 1;
@@ -1470,7 +1470,7 @@ pre .javascript .function {
 .posts-expand .post-meta {
   margin: 3px 0 60px 0;
   color: #999;
-  font-family: 'Courier New bold', "PingFang SC", "Microsoft YaHei", sans-serif;
+  font-family: 'Courier New', 'Courier New bold', "PingFang SC", "Microsoft YaHei", sans-serif;
   font-size: 12px;
   text-align: center;
 }
@@ -1705,7 +1705,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #a611ff;
+  background: #e2674d;
 }
 .feed-link,
 .chat {
@@ -2224,7 +2224,7 @@ ul.breadcrumb {
   margin: 1em 0;
   padding: 0 2em;
   text-align: center;
-  font-size: 8px;
+  font-size: 3px;
 }
 ul.breadcrumb li {
   display: inline;
