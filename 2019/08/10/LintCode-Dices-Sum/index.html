@@ -144,16 +144,18 @@
   };
 </script>
 
-  <meta name="description" content="我随便写写，您随意看看">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xxn&#39;s learning">
-<meta property="og:url" content="https://wsntxxn.github.io/index.html">
+  <meta name="description" content="DescriptionThrow n dices, the sum of the dices’ faces is S. Given n, find the all possible value of S along with its probability. Example: Example 1:Input: n = 1Output: [[1, 0.17], [2, 0.17], [3, 0.17">
+<meta name="keywords" content="DP">
+<meta property="og:type" content="article">
+<meta property="og:title" content="[LintCode] Dices Sum">
+<meta property="og:url" content="https://wsntxxn.github.io/2019/08/10/LintCode-Dices-Sum/index.html">
 <meta property="og:site_name" content="xxn&#39;s learning">
-<meta property="og:description" content="我随便写写，您随意看看">
+<meta property="og:description" content="DescriptionThrow n dices, the sum of the dices’ faces is S. Given n, find the all possible value of S along with its probability. Example: Example 1:Input: n = 1Output: [[1, 0.17], [2, 0.17], [3, 0.17">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-10T16:04:49.873Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xxn&#39;s learning">
-<meta name="twitter:description" content="我随便写写，您随意看看">
+<meta name="twitter:title" content="[LintCode] Dices Sum">
+<meta name="twitter:description" content="DescriptionThrow n dices, the sum of the dices’ faces is S. Given n, find the all possible value of S along with its probability. Example: Example 1:Input: n = 1Output: [[1, 0.17], [2, 0.17], [3, 0.17">
 
 
 
@@ -161,7 +163,7 @@
 
   
   
-  <link rel="canonical" href="https://wsntxxn.github.io/">
+  <link rel="canonical" href="https://wsntxxn.github.io/2019/08/10/LintCode-Dices-Sum/">
 
 
 
@@ -172,7 +174,7 @@
 </script>
 
   
-  <title>xxn's learning</title>
+  <title>[LintCode] Dices Sum | xxn's learning</title>
   
 
 
@@ -220,8 +222,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
-  page-home">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -263,7 +264,7 @@
         
         
           
-          <li class="menu-item menu-item-home menu-item-active">
+          <li class="menu-item menu-item-home">
 
     
     
@@ -367,9 +368,9 @@
           
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -401,10 +402,8 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/08/10/LintCode-Dices-Sum/" class="post-title-link" itemprop="url">[LintCode] Dices Sum</a>
+          <h1 class="post-title" itemprop="name headline">[LintCode] Dices Sum
+
               
             
           </h1>
@@ -498,9 +497,7 @@
       
 
       
-        
-          
-            <h4 id="Description"><a href="#Description" class="headerlink" title="Description"></a><strong>Description</strong></h4><p>Throw n dices, the sum of the dices’ faces is S. Given n, find the all possible value of S along with its probability.</p>
+        <h4 id="Description"><a href="#Description" class="headerlink" title="Description"></a><strong>Description</strong></h4><p>Throw n dices, the sum of the dices’ faces is S. Given n, find the all possible value of S along with its probability.</p>
 <p><strong>Example</strong>:</p>
 <p><strong>Example 1</strong>:<br>Input: n = 1<br>Output: [[1, 0.17], [2, 0.17], [3, 0.17], [4, 0.17], [5, 0.17], [6, 0.17]]<br>Explanation: Throw a dice, the sum of the numbers facing up may be 1, 2, 3, 4, 5, 6, and the probability of each result is 0.17.</p>
 <p><strong>Example 2</strong>:<br>Input: n = 2<br>Output: [[2,0.03],[3,0.06],[4,0.08],[5,0.11],[6,0.14],[7,0.17],[8,0.14],[9,0.11],[10,0.08],[11,0.06],[12,0.03]]<br>Explanation: Throw two dices, the sum of the numbers facing up may be in [2,12], and the probability of each result is different.</p>
@@ -514,13 +511,13 @@
 <p>另外，DP过程中可以发现，求扔i次各个和的概率时，只要用到i-1次各个和的概率，之前的都用不上，而且纵坐标大于6i的部分都被浪费了。于是，从节省空间的角度，可以将矩阵简化为一个size=6n的数组，每一轮更新下标为[i, 6i]的部分，即掷i次和为各个值的概率：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;Map.Entry&lt;Integer, Double&gt;&gt; dicesSum(<span class="keyword">int</span> n) &#123;</span><br><span class="line">        List&lt;Map.Entry&lt;Integer, Double&gt;&gt; res = <span class="keyword">new</span> ArrayList();</span><br><span class="line">        <span class="keyword">double</span>[] probs = <span class="keyword">new</span> <span class="keyword">double</span>[<span class="number">6</span>*n + <span class="number">1</span>];</span><br><span class="line">        <span class="keyword">double</span>[] tmp = <span class="keyword">new</span> <span class="keyword">double</span>[<span class="number">6</span>*n + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">6</span>; ++i)</span><br><span class="line">            probs[i] = <span class="number">1.0</span> / <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">            <span class="comment">// Throw i times, computing and store probs in tmp</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt;= <span class="number">6</span>*i; ++j) &#123;</span><br><span class="line">                <span class="comment">// When throwing i times, the prob summing j is stored in tmp[j]</span></span><br><span class="line">                <span class="comment">// throwing (i-1) times and prob summing j is stored in probs[j]</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="keyword">int</span> lastDice = Math.max(j - <span class="number">6</span>*i + <span class="number">6</span>, <span class="number">1</span>); lastDice &lt;= Math.min(<span class="number">6</span>, j - i + <span class="number">1</span>); ++lastDice) &#123;</span><br><span class="line">                    <span class="comment">// throwing (i-1) times get (i-1) sum at least</span></span><br><span class="line">                    tmp[j] += probs[j - lastDice];</span><br><span class="line">                &#125;</span><br><span class="line">                tmp[j] /= <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Transfer probabilities from tmp to probs</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt;= <span class="number">6</span>*i; ++j)</span><br><span class="line">                probs[j] = tmp[j];</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &lt;= <span class="number">6</span>*n; ++i)</span><br><span class="line">            res.add(<span class="keyword">new</span> AbstractMap.SimpleEntry&lt;Integer, Double&gt;(i, probs[i]));</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
 
-          
-        
       
     </div>
 
     
 
+    
+      
     
 
     
@@ -538,391 +535,39 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wsntxxn.github.io/2019/07/24/EM算法简介/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xuenan Xu">
-      <meta itemprop="description" content="我随便写写，您随意看看">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xxn's learning">
-    </span>
-
-    
-      <header class="post-header">
-
         
+          
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/07/24/EM算法简介/" class="post-title-link" itemprop="url">EM算法简介</a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-
+        <div class="post-tags">
           
+            <a href="/tags/DP/" rel="tag"># DP</a>
           
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-07-24 14:55:20" itemprop="dateCreated datePublished" datetime="2019-07-24T14:55:20+08:00">2019-07-24</time>
-            </span>
-          
-
-          
-            
-
-            
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-07-26 00:17:48" itemprop="dateModified" datetime="2019-07-26T00:17:48+08:00">2019-07-26</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Machine-Learning/" itemprop="url" rel="index"><span itemprop="name">Machine Learning</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>老实说，EM算法这玩意曾经一直是我心里一个坑，学了至少三遍 (周志华西瓜书第一遍，李航《统计学习方法》第二遍，过了一年又回顾了一遍) 才有了比较清楚的思路。跟着各种教程一行行看很容易陷入推导长长的公式的泥沼，到头来知道中间有用Jensen不等式放缩，知道要优化一个下界函数，但具体谈起细节来又不是那么清楚。这里我试图把我学习三次之后的理解分享一下，提供我自己理解EM算法的视角。</p>
-<p>当然，看完这篇还是不懂EM也是正常的，一来我水平有限，二来学习知识本来就是螺旋上升的过程。刚开始懵懵懂懂地记住一些东西，以后随着知识和项目的积累，回过头来再看这部分内容，也许哪一天就醍醐灌顶了。</p>
-<h2 id="EM算法概览"><a href="#EM算法概览" class="headerlink" title="EM算法概览"></a>EM算法概览</h2><h3 id="MLE"><a href="#MLE" class="headerlink" title="MLE"></a>MLE</h3><p>在正式接触EM算法之前，我们先回顾一下概率统计里面经典的参数估计方法——最大化似然估计 (Maximum Likelihood Estimation)。这里所谓似然，就是指概率。实际上意思是说，我们现在有一个分布，但是参数未知，要估计这些参数，手头有的数据是从这个分布中采样得到的一些样本，那么通过最大化这些样本出现的概率来确定参数值。</p>
-<p>举个例子，如果全校男生身高是服从高斯分布的，但我们不知道高斯分布的两个参数：均值$\mu$和方差$\sigma$，所以怎么办呢？既然已经有了概率分布的公式 (尽管有两个参数未知)，那么就按照高中数学中变量和参数的视角 (函数中将$x$看作自变量，其他未知数，比如$a$都看作已知的参数)，将这两个参数看成已知，求出这些男生的身高刚好是这些值的概率 (如果男生身高为$x$的概率为$p(x|\mu, \sigma)$)：<br>$$p(X) = p(x_1|\mu, \sigma)  p(x_2|\mu, \sigma)  …  p(x_n|\mu, \sigma)$$<br>那么好，这个$p(X)$，即样本点取这些值的概率，就是关于参数$\mu$和$\sigma$的函数，直接最大化这个概率就可以求出参数的估计值了，即：<br>$$\theta = \mathop{argmax}_\theta p(X)$$<br>实际求解的时候还是取了log，使得连乘变成求和，这样求导就比较方便。<br>所以说参数其实是选取的一组使得样本出现概率最大的值。</p>
-<h3 id="从MLE到EM"><a href="#从MLE到EM" class="headerlink" title="从MLE到EM"></a>从MLE到EM</h3><p>那么直接用MLE有啥问题吗？EM算法是解决什么问题的呢？<br>问题在于“隐变量”这个小可爱的出现，让似然的计算式里多出了隐变量的部分，无法直接对似然求最大。隐变量不属于模型参数，是无法直接观测到的，但又和参数一起对采样结果有直接的影响。</p>
-<p>还是举例来说明，经典的三硬币问题：<br>有三枚硬币A，B，C (正面率不一定是1/2)，先投掷A，如果是正面就投掷B，如果是反面就投掷C，若我们只能观测到最后的投掷结果 (B或者C的结果)，如何估算三颗硬币的正面率？<br>这里每次A的结果不能从观测变量中直接得到，因此A是一个隐变量。似然的计算式中就会出现$p(A是正面)$、$p(B是正面|A是正面)$等部分，无法全部用模型参数来表示了。</p>
-<h3 id="EM的总体思路"><a href="#EM的总体思路" class="headerlink" title="EM的总体思路"></a>EM的总体思路</h3><p>针对隐变量的问题，EM算法的总体思路是这样的：</p>
-<ol>
-<li>初始化：给模型参数一个初始值</li>
-<li>用已有的参数估计隐变量的值 (E步)</li>
-<li>把估计的隐变量作为已知，最大化似然，更新模型参数 (M步)</li>
-<li>不断重复第2、3步，直至收敛 (比如参数变化很小)</li>
-</ol>
-<h2 id="EM算法的推导"><a href="#EM算法的推导" class="headerlink" title="EM算法的推导"></a>EM算法的推导</h2><p>上面只是介绍了总体的思路，还是有很多问题，比如，为什么这么算是有效的？迭代下来似然一定会递增吗？具体如何最大化似然？<br>接下来就对EM算法进行一下推导和证明。</p>
-<h3 id="Auxiliary-Function-Q"><a href="#Auxiliary-Function-Q" class="headerlink" title="Auxiliary Function Q"></a>Auxiliary Function Q</h3><p>规定概率模型参数为$\theta$，共有$m$个样本：$x^{(1)}, x^{(2)},…, x^{(i)},…,x^{(m)}$，隐变量为$z$，似然为$L(\theta)$。<br>那么要最大化的似然就是<br>$$L(\theta) = \sum_{i=1}^m log P(x^{(i)}|\theta)$$<br>考虑隐变量$z$的影响，那么$P(x^{(i)}|\theta) = \sum \limits_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta)$，所以<br>$$L(\theta) = \sum_{i=1}^m log[\sum_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta)]$$<br>下面是关键的一步，规定$\hat\theta$为当前的参数值，可能是初始值也可能是迭代了几轮之后的参数值，总之是一组确定的值，那么<br>$$log P(x^{(i)}|\theta) = log\sum_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta) = log\sum_{z^{(i)}}[P(z^{(i)}|x^{(i)}, \hat\theta)\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}]$$<br>看到这大概要奇怪了，为啥要做先乘后除$P(z^{(i)}|x^{(i)}, \hat\theta)$这部分的操作呢？这就需要介绍著名的Jensen不等式了。<br>Jensen不等式可以通过凸函数的图像很直观地得出，这里就不讨论一般形式了，直接给出和EM算法有关的在log函数下的形式：<br>$$\sum_i^n\alpha_ilogx_i \leq log\sum_i^n\alpha_ix_i$$<br>其中$\alpha$满足$\sum \limits_{i=1}\limits^n\alpha_i = 1$，当且仅当$x_1 = x_2 = \ldots = x_n$时取等号。<br>这个不等式有个好处：右边是和的对数，经过放缩之后变成了对数的和。而实际上，$\sum \limits_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta) = 1$，隐变量取到各个值的概率之和是1，刚好满足这个条件，这样一来应用Jensen不等式，$logP(x^{(i)}|\theta)$就转化成对数之和的形式，对$\theta$的优化就更加容易：<br>$$log\sum_{z^{(i)}}[P(z^{(i)}|x^{(i)}, \hat\theta)\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}] \geq \sum_{z^(i)}P(z^{(i)}|x^{(i)}, \hat\theta)log\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$$<br>所以<br>$$L(\theta) \geq \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta)log\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$$<br>于是我们成功地为原来难以直接优化的似然函数$L(\theta)$找到了一个形式为对数之和的，更好优化的下界 (虽然推导过程看起来像强行凑Jensen不等式，但数学上很多推导就是这么巧…)，不妨称之为$B(\theta)$。<br>注意到$\hat\theta$是确定的值，所以上式中只有$P(x^{(i)}, z^{(i)}|\theta)$是不确定的部分，提出这部分就能得到我们的辅助函数 (Auxiliary Function) Q：<br>$$Q(\theta) = \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta)logP(x^{(i)}, z^{(i)}|\theta)$$<br>没错，真正用 MLE 的思路来求参数就是对这个 Auxiliary Function $Q(\theta)$，而不是对原始的似然函数$L(\theta)$求极大。</p>
-<h3 id="取等号的条件"><a href="#取等号的条件" class="headerlink" title="取等号的条件"></a>取等号的条件</h3><p>看到这里，好像有哪里不太对：通过Jensen不等式能够放缩到一个对数之和的$B$函数的形式，但是仅仅满足$L(\theta) \geq B(\theta)$这个条件，对$Q$求极大(也就是对$B$求极大)得到的$\theta$并不能保证$L$也增大呀。事实上，刚刚不等式放缩的过程中的确有一项内容被忽略了：取等号的条件。<br>将$x_1 = x_2 = \ldots = x_n$的条件应用到这里，就是对于各个$z^{(i)}$，$\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$都相等，不妨令<br>$$\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)} = c (constant)$$<br>$$P(x^{(i)}, z^{(i)}|\theta) = c\cdot P(z^{(i)}|x^{(i)}, \hat\theta)$$<br>等式两边同时对$z^{(i)}$求和：<br>$$\sum_{z^{(i)}}P(x^{(i)}, z^{(i)}|\theta) = c \sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \hat\theta)$$<br>$$P(x^{(i)}|\theta) = c$$<br>求得常数c之后再把c回带到上面的等式中：<br>$$P(x^{(i)}|\theta) = \frac{P(x^{(i)}, z^{(i)}|\theta)}{P(z^{(i)}|x^{(i)}, \hat\theta)}$$<br>$$P(z^{(i)}|x^{(i)}, \hat\theta) = \frac{P(x^{(i)}, z^{(i)}|\theta)}{P(x^{(i)}|\theta)} = P(z^{(i)}|x^{(i)}, \theta)$$<br>于是我们得到取等号的条件实际上就是：<br>$$\theta = \hat\theta$$<br>当参数值取当前参数的时候，Jensen不等式取等号！</p>
-<h3 id="图形角度看EM算法"><a href="#图形角度看EM算法" class="headerlink" title="图形角度看EM算法"></a>图形角度看EM算法</h3><p>换个视角来看，$L(\theta)$和$B(\theta)$都是关于$\theta$的函数，它们满足(1) $L(\theta) \geq B(\theta)$ (2) 只有一个点满足两者相等，即$\hat\theta$<br>那么画个图，就能很轻松地看出优化过程中$B(\theta)$的变化了：<br><img src="/images/em_algo.png" alt="迭代过程中B函数的变化"><br>图片是我从网上随便找的，符号和前面略有不同，图中红色的$F$对应前面的目标似然函数$L$，蓝色和绿色的两条$G$对应前面的下界函数$B$，注意到$B$也受$\hat\theta$的影响，每一轮的$B$函数是不一样的，蓝色的线对应第t轮，绿色的线对应第t+1轮。<br>这张图很好地反映了$B$的变化：每一轮迭代之前，$L$和$B$是相等的，经过一次迭代，$\theta$跑到了$B$取得极大的位置，而$L(\theta) \geq B(\theta)$，所以$L(\theta)$也变大了。于是到下一轮，新的$B$函数在新的$\theta$处又和$L$相等，进入了和上次迭代之前相同的状态。如此不断迭代下去，$L(\theta)$就不断变大，朝着我们最初最大化似然的目标不断前进。</p>
-<h3 id="数学证明"><a href="#数学证明" class="headerlink" title="数学证明"></a>数学证明</h3><p>什么，你说这样不够严谨？好，那从数学角度证明一遍$L(\theta)$递增呗。<br>令$\theta^{t+1}$和$\theta^t$分别表示第t+1轮和第t轮的参数值，那么需要证明的就是$L(\theta^{t+1}) \geq L(\theta^t)$。<br>由于$\theta^{t+1}$定义就是对$Q(\theta, \theta^t)$求极大得到的，所以$Q(\theta^{t+1}, \theta^t) \geq Q(\theta^t, \theta^t)$天然成立，不妨看看$L(\theta)$和$Q(\theta, \theta^t)$相比差了啥：<br>$$L(\theta) = \sum_{i=1}^m log P(x^{(i)}|\theta)$$<br>$$Q(\theta, \theta^t) = \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \theta^t)logP(x^{(i)}, z^{(i)}|\theta)$$<br>把$L(\theta)$也加上对$z^{(i)}$求和的部分，和$Q(\theta, \theta^t)$对应起来：<br>$$L(\theta) = \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \theta^t)log P(x^{(i)}|\theta)$$<br>然后两式相减，得到：<br>$$Q(\theta, \theta^t) - L(\theta) = \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \theta^t) log\frac{P(x^{(i)}, z^{(i)}|\theta)}{P(x^{(i)}|\theta)} = \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \theta^t) logP(z^{(i)}|x^{(i)}, \theta)$$<br>令这个函数为$H(\theta, \theta^t)$(如果了解信息熵会发现真的很符合信息熵的定义啊，叫H没毛病)，所以<br>$$L(\theta) = Q(\theta, \theta^t) - H(\theta, \theta^t)$$<br>$$L(\theta^{t+1}) - L(\theta^t) = [Q(\theta^{t+1}, \theta^t) - Q(\theta^t, \theta^t)] - [H(\theta^{t+1}, \theta^t) - H(\theta^t, \theta^t)]$$<br>第一项已经是非负了，so只要保证第二项非正即可。于是：<br>\begin{equation}\begin{split}<br>H(\theta^{t+1}, \theta^t) - H(\theta^t, \theta^t) &amp;= \sum_{i=1}^m\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \theta^t)log\frac{P(z^{(i)}|x^{(i)}, \theta^{t+1})}{P(z^{(i)}|x^{(i)}, \theta^t)}\\<br>&amp;\leq \sum_{i=1}^mlog\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \theta^t)\frac{P(z^{(i)}|x^{(i)}, \theta^{t+1})}{P(z^{(i)}|x^{(i)}, \theta^t)}\\<br>&amp;=\sum_{i=1}log\sum_{z^{(i)}}P(z^{(i)}|x^{(i)}, \theta^{t+1})\\<br>&amp;=0\\<br>\end{split}\end{equation}<br>很好，这里又用了一次Jensen不等式，和前面一样，也是因为隐变量取到各个值概率之和为1。于是第二项顺利证出非正，$L(\theta)$似然函数的递增性证明完成。</p>
-<h2 id="EM算法的应用"><a href="#EM算法的应用" class="headerlink" title="EM算法的应用"></a>EM算法的应用</h2><p>恭喜，经过一大波公式，我们已经成功地推导并证明了EM算法。当然，上面推导的过程中，也可以先不给出$P(z^{(i)}|x^{(i)}, \hat\theta)$这个式子，而是按照Jensen不等式的条件，假设有个跟$z^{(i)}$有关的表达式，比如叫$F(z^{(i)})$，加起来为1，这样直接用Jensen不等式放缩，最后求取等号的条件会发现，$F(z^{(i)}) = P(z^{(i)}|x^{(i)}, \hat\theta)$，同样得出这个因子就是隐变量在样本和当前参数下的分布，看到有些教程就是按这个思路来写的。<br>这样一来，上面写的EM算法的总体思路就很好理解了，核心就是进行这样的迭代：<br>(1) 用样本和当前参数估计每个样本隐变量$z^{(i)}$的分布<br>(2) 以隐变量的分布为已知，优化$Q$函数，求出此时使$Q$最大的参数$\theta$，作为下一轮迭代的初始参数</p>
-<p>在我所接触的语音这一块，EM算法有两个经典的应用：(1) GMM模型的参数求解 (2) HMM模型的参数求解<br>在此先挖个坑，在接下来的两篇中将会简要地推导一下EM算法在GMM和HMM中的求解过程。。。</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
       
 
-  
-
-  
-  
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://wsntxxn.github.io/2019/04/23/firstblog/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="Xuenan Xu">
-      <meta itemprop="description" content="我随便写写，您随意看看">
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xxn's learning">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2019/04/23/firstblog/" class="post-title-link" itemprop="url">firstblog</a>
-              
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
             
-          </h1>
-        
-
-        <div class="post-meta">
-
-          
-          
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-
-              
-                
-              
-
-              <time title="Created: 2019-04-23 16:23:59" itemprop="dateCreated datePublished" datetime="2019-04-23T16:23:59+08:00">2019-04-23</time>
-            </span>
-          
-
-          
+              <a href="/2019/07/24/EM算法简介/" rel="next" title="EM算法简介">
+                <i class="fa fa-chevron-left"></i> EM算法简介
+              </a>
             
+          </div>
 
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">Edited on</span>
-                
-                <time title="Modified: 2019-07-24 15:36:00" itemprop="dateModified" datetime="2019-07-24T15:36:00+08:00">2019-07-24</time>
-              </span>
-            
-          
-
-          
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Testing/" itemprop="url" rel="index"><span itemprop="name">Testing</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-          
-
-          
-          
-
-          
-
-          
-
-          <br>
-          
-
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-            <h2 id="Title"><a href="#Title" class="headerlink" title="Title"></a>Title</h2><p>English testing.</p>
-<p>中文测试。</p>
-<h2 id="Standard-HTML-element"><a href="#Standard-HTML-element" class="headerlink" title="Standard HTML element"></a>Standard HTML element</h2><button><br>Button<br></button>
-
-<p><a href="https://www.baidu.com" target="_blank" rel="noopener">Baidu</a></p>
-<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn <span class="keyword">as</span> nn</span><br><span class="line">padded, lengths = nn.rnn.utils.pad_packed_sequence(packed)</span><br></pre></td></tr></table></figure>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">window</span>.addEventListener(<span class="string">'load'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'window loaded'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
-<h2 id="Math-Equation"><a href="#Math-Equation" class="headerlink" title="Math Equation"></a>Math Equation</h2><p>$f(x)=ax+b$</p>
-<p>$$f(x)=ax+b$$</p>
-
-          
-        
-      
-    </div>
-
-    
-
-    
-
-    
-    
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -932,14 +577,15 @@
   </article>
 
 
-    
-  </section>
-
-  
+  </div>
 
 
           </div>
           
+
+  
+
+
 
         </div>
         
@@ -959,8 +605,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1079,6 +734,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#Description"><span class="nav-number">1.</span> <span class="nav-text">Description</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -1216,6 +888,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
 
   <script src="/js/next-boot.js?v=7.2.0"></script>
 
@@ -1230,16 +906,6 @@
   
 
   
-  
-    
-      
-        
-      
-    
-      
-    
-      
-    
   
 
   
@@ -1293,6 +959,8 @@
 
 
 
+
+  
 
 
 
