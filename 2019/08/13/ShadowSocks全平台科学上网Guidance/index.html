@@ -14,7 +14,7 @@
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
+<html class="theme-next pisces use-motion" lang="zh-HANS">
 <head><meta name="generator" content="Hexo 3.8.0">
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -122,7 +122,7 @@
     version: '7.2.0',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
+    copycode: {"enable":true,"show_result":true,"style":"mac"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
@@ -151,9 +151,9 @@
 <meta property="og:url" content="https://wsntxxn.github.io/2019/08/13/ShadowSocks全平台科学上网Guidance/index.html">
 <meta property="og:site_name" content="xxn&#39;s learning">
 <meta property="og:description" content="前言ShadowSocks基本认识本文介绍用ShadowSocks这个工具进行科学上网的配置方法，不知道啥是科学上网或者为啥要科学上网的童鞋可以不用再看下去了，相信你也没这个需求。。。 至于为啥选择ShadowSocks呢？笔者表示当年用了很长时间的Lantern突然被封，其它VPN找了半天，免费的速度太慢，收费的又比较贵，对比之下ShadowSocks以稳定著名，价格也能接受，还可以自己租服务器">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale" content="zh-HANS">
 <meta property="og:image" content="https://wsntxxn.github.io/2019/08/13/ShadowSocks全平台科学上网Guidance/shadowsocks_to_config_download.png">
-<meta property="og:updated_time" content="2019-08-16T09:02:33.797Z">
+<meta property="og:updated_time" content="2019-08-16T09:13:45.900Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ShadowSocks全平台科学上网Guidance">
 <meta name="twitter:description" content="前言ShadowSocks基本认识本文介绍用ShadowSocks这个工具进行科学上网的配置方法，不知道啥是科学上网或者为啥要科学上网的童鞋可以不用再看下去了，相信你也没这个需求。。。 至于为啥选择ShadowSocks呢？笔者表示当年用了很长时间的Lantern突然被封，其它VPN找了半天，免费的速度太慢，收费的又比较贵，对比之下ShadowSocks以稳定著名，价格也能接受，还可以自己租服务器">
@@ -217,7 +217,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-HANS">
 
   
   
@@ -445,7 +445,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-16 17:02:33" itemprop="dateModified" datetime="2019-08-16T17:02:33+08:00">2019-08-16</time>
+                <time title="Modified: 2019-08-16 17:13:45" itemprop="dateModified" datetime="2019-08-16T17:13:45+08:00">2019-08-16</time>
               </span>
             
           
@@ -481,7 +481,27 @@
 
           <br>
           
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              
+              <span title="Symbols count in article">5.4k</span>
+            </span>
+          
 
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              
+              <span title="Reading time">9 mins.</span>
+            </span>
           
 
           
@@ -508,7 +528,7 @@
 <p>注意，ss本身只是一项技术，不要把它和提供ss服务器的公司、以及科学上网这个概念搞混了。</p>
 <h4 id="v2ray"><a href="#v2ray" class="headerlink" title="v2ray"></a>v2ray</h4><p>其实，数据只经过ss一次转发还不是很安全，有一种叫做v2ray的技术，可以将数据再进行一次加密传输，提高安全性。如果加入v2ray，那么数据传输的过程就是：</p>
 <p>本地应用 -&gt; ss 客户端 -&gt; v2ray 服务器 -&gt; ss 服务器 -&gt; 境外主机</p>
-<p>其中，v2ray安装在境内的服务器上，和我们的本地机器直接传输数据，有兴趣的朋友可以上<a href="https://www.v2ray.com/" target="_blank" rel="noopener">官网</a>研究怎么配置，本文并不设计v2ray的配置。</p>
+<p>其中，v2ray安装在境内的服务器上，和我们的本地机器直接传输数据，有兴趣的朋友可以上<a href="https://www.v2ray.com/" target="_blank" rel="noopener">官网</a>研究怎么配置，本文并不涉及v2ray的配置。</p>
 <h3 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h3><p>ss服务器可以通过这些方式获得：</p>
 <ul>
 <li><p>购买第三方服务商(如<a href="https://order.shadowsocks.se/" target="_blank" rel="noopener">shadowsocks.to</a>)的ss服务</p>
@@ -527,7 +547,7 @@
 <p><img src="shadowsocks_to_config_download.png" alt="配置文件下载位置"></p>
 <p>另外，各个服务器节点旁边的二维码在配置移动端(Android、iOS)的ss客户端时也要用到。</p>
 <h4 id="自己搭建ss服务"><a href="#自己搭建ss服务" class="headerlink" title="自己搭建ss服务"></a>自己搭建ss服务</h4><p><strong>优点</strong>：配置自由；流量不受限制；可以给多人使用</p>
-<p><strong>缺点</strong>：有一定技术门槛(其实几乎没有)；如果IP被封，需要换服务器</p>
+<p><strong>缺点</strong>：有一定技术门槛；如果IP被封，需要换服务器</p>
 <p>ShadowSocks官网上有关于如何<a href="https://shadowsocks.org/en/download/servers.html" target="_blank" rel="noopener">搭建服务器</a>和<a href="https://shadowsocks.org/en/config/quick-guide.html" target="_blank" rel="noopener">配置信息</a>的说明，按照上面的教程就可以搭好服务器，下面简单地介绍一下基础的步骤：</p>
 <h5 id="准备服务器"><a href="#准备服务器" class="headerlink" title="准备服务器"></a>准备服务器</h5><p>一台能够访问外网的VPS主机是必要的，可以从典型的服务商如<a href="https://www.vultr.com/" target="_blank" rel="noopener">Vultr</a>处购买，然后通过ssh登录主机，安装ss服务。</p>
 <h5 id="用pip安装ss服务"><a href="#用pip安装ss服务" class="headerlink" title="用pip安装ss服务"></a>用pip安装ss服务</h5><p>一般的主机上都默认安装有Python2和pip，连接VPS主机，打开终端检查一下：</p>
@@ -878,7 +898,21 @@
   <span class="author" itemprop="copyrightHolder">Xuenan Xu</span>
 
   
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+    <span title="Symbols count total">16k</span>
+  
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    
+    <span title="Reading time total">27 mins.</span>
   
 </div>
 

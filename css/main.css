@@ -492,6 +492,57 @@ body {
     width: 73%;
   }
 }
+.highlight-wrap {
+  position: relative;
+}
+.highlight-wrap:hover .copy-btn,
+.highlight-wrap .copy-btn:focus {
+  opacity: 1;
+}
+.copy-btn {
+  display: inline-block;
+  position: absolute;
+  padding: 2px 6px;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 20px;
+  color: #333;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  outline: 0;
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  color: #fff;
+  right: 0px;
+  top: 2px;
+}
+.highlight-wrap {
+  background: #21252b;
+  border-radius: 5px;
+  margin-bottom: 1.6em;
+  padding-top: 30px;
+  box-shadow: 0 10px 30px 0px rgba(0,0,0,0.4);
+}
+.highlight {
+  margin: 0px !important;
+  border-radius: 0 0 5px 5px;
+}
+.highlight::before {
+  content: " ";
+  position: absolute;
+  border-radius: 50%;
+  background: #fc625d;
+  width: 12px;
+  height: 12px;
+  left: 12px;
+  margin-top: -20px;
+  box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+}
 pre,
 .highlight {
   margin: 20px 0;
@@ -1705,7 +1756,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #3ea10b;
+  background: #c67001;
 }
 .feed-link,
 .chat {
