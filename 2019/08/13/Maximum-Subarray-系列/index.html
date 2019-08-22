@@ -144,18 +144,18 @@
   };
 </script>
 
-  <meta name="description" content="写作，不过是一种记录思维的生活方式">
+  <meta name="description" content="Maximum Subarray 是非常经典的算法题，最开始学数据结构的时候就讲了从$O(N^3)$到$O(N^2)$再到$O(N)$的优化过程，在此基础上还有其它变种题目。实际上，这一系列题都可以用动态规划来解决。  Maximum SubarraySource  LeetCode: (53) Maximum Subarray LintCode: (41) Maximum Subarray">
 <meta name="keywords" content="DP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Maximum Subarray 系列">
 <meta property="og:url" content="https://wsntxxn.github.io/2019/08/13/Maximum-Subarray-系列/index.html">
 <meta property="og:site_name" content="xxn&#39;s learning">
-<meta property="og:description" content="写作，不过是一种记录思维的生活方式">
+<meta property="og:description" content="Maximum Subarray 是非常经典的算法题，最开始学数据结构的时候就讲了从$O(N^3)$到$O(N^2)$再到$O(N)$的优化过程，在此基础上还有其它变种题目。实际上，这一系列题都可以用动态规划来解决。  Maximum SubarraySource  LeetCode: (53) Maximum Subarray LintCode: (41) Maximum Subarray">
 <meta property="og:locale" content="zh-HANS">
-<meta property="og:updated_time" content="2019-08-13T14:06:55.691Z">
+<meta property="og:updated_time" content="2019-08-22T12:38:58.211Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Maximum Subarray 系列">
-<meta name="twitter:description" content="写作，不过是一种记录思维的生活方式">
+<meta name="twitter:description" content="Maximum Subarray 是非常经典的算法题，最开始学数据结构的时候就讲了从$O(N^3)$到$O(N^2)$再到$O(N)$的优化过程，在此基础上还有其它变种题目。实际上，这一系列题都可以用动态规划来解决。  Maximum SubarraySource  LeetCode: (53) Maximum Subarray LintCode: (41) Maximum Subarray">
 
 
 
@@ -430,13 +430,23 @@
                 
               
 
-              <time title="Created: 2019-08-13 22:05:16 / Modified: 22:06:55" itemprop="dateCreated datePublished" datetime="2019-08-13T22:05:16+08:00">2019-08-13</time>
+              <time title="Created: 2019-08-13 22:05:16" itemprop="dateCreated datePublished" datetime="2019-08-13T22:05:16+08:00">2019-08-13</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-22 20:38:58" itemprop="dateModified" datetime="2019-08-22T20:38:58+08:00">2019-08-22</time>
+              </span>
             
           
 
@@ -478,7 +488,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span title="Symbols count in article">0</span>
+              <span title="Symbols count in article">3.3k</span>
             </span>
           
 
@@ -490,7 +500,7 @@
               
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               
-              <span title="Reading time">1 mins.</span>
+              <span title="Reading time">5 mins.</span>
             </span>
           
 
@@ -509,7 +519,40 @@
       
 
       
-        
+        <blockquote>
+<p>Maximum Subarray 是非常经典的算法题，最开始学数据结构的时候就讲了从$O(N^3)$到$O(N^2)$再到$O(N)$的优化过程，在此基础上还有其它变种题目。实际上，这一系列题都可以用动态规划来解决。</p>
+</blockquote>
+<h1 id="Maximum-Subarray"><a href="#Maximum-Subarray" class="headerlink" title="Maximum Subarray"></a>Maximum Subarray</h1><p><strong>Source</strong></p>
+<ul>
+<li>LeetCode: <a href="https://leetcode-cn.com/problems/maximum-subarray/" target="_blank" rel="noopener">(53) Maximum Subarray</a></li>
+<li>LintCode: <a href="https://www.lintcode.com/problem/maximum-subarray/" target="_blank" rel="noopener">(41) Maximum Subarray</a></li>
+</ul>
+<p><strong>Description</strong></p>
+<blockquote>
+<p>Given an array of integers, find a contiguous subarray which has the largest sum.<br><strong>Example</strong><br><strong>Example1:</strong><br>Input: <code>[-2,2,-3,4,-1,2,1,-5,3]</code><br>Output: 6<br>Explanation: the contiguous subarray <code>[4,-1,2,1]</code> has the largest sum = 6.<br><strong>Challenge</strong><br>Can you do it in time complexity O(n)?</p>
+</blockquote>
+<p><strong>Analysis &amp; Code</strong></p>
+<p><em>Solution 1 - Two Pointers</em></p>
+<p>这是笔者初学数据结构时书上的经典算法。既然是subarray，就可以用两个指针(记为<code>start</code>和<code>end</code>)分别指向起始和结束位置。一个值得注意的性质是，如果有一个子数组[a1, a2, a3,…,an]的和小于0，那么这个子数组肯定不会出现在结果的两边，因为去掉这部分仍是满足条件的子数组，而且和一定会变大。于是，一开始让<code>start</code>和<code>end</code>都指向第一个数，<code>end</code>不断往后移，同时更新<code>sum</code>，一旦<code>sum</code>小于0就舍弃这部分(end = start = end + 1)，直到<code>end</code>达到最后一个数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> nums: A list of integers</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span>: A integer indicate the sum of max subarray</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// write your code here</span></span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">  </span><br><span class="line">    <span class="keyword">int</span> res = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> end = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> candidate = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (end &lt; nums.length) &#123;</span><br><span class="line">        candidate += nums[end];</span><br><span class="line">        <span class="keyword">if</span> (candidate &gt; res)</span><br><span class="line">            res = candidate;</span><br><span class="line">        <span class="keyword">if</span> (candidate &lt; <span class="number">0</span>) &#123;</span><br><span class="line">            start = end + <span class="number">1</span>;</span><br><span class="line">            end = start;</span><br><span class="line">            candidate = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            end++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>当然，这道题不需要返回子数组的起始和结束位置，其实不需要保存<code>start</code>和<code>end</code>，直接更新<code>candidate</code>就可以，在遍历每个数时：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">candidate = Math.max(candidate, <span class="number">0</span>);</span><br><span class="line">candidate += num;</span><br></pre></td></tr></table></figure>
+<p><em>Solution 2 - DP(global &amp; local)</em></p>
+<p>从动态规划的角度来思考，那么<code>dp[i]</code>存的是<code>nums[0...i]</code>子数组的最大子数组和，如何更新<code>dp[i+1]</code>呢？</p>
+<p>因为我们也不知道dp[i]表示的最大子数组和包不包括<code>nums[i]</code>，所以光凭<code>dp[i]</code>是没法得到增加<code>nums[i+1]</code>对<code>dp[i+1]</code>的影响的，于是还要维护一个<code>local</code>数组，表示<code>nums[0...i]</code>子数组中，包含<code>nums[i]</code>的最大子数组和，这样增加了<code>nums[i+1]</code>，就能更新<code>local[i+1]</code>的值了，从而更新<code>dp[i+1]</code>。</p>
+<p>这里把dp换成global，那么状态转移方程就是：</p>
+<p>$local[i+1] = max(local[i] + nums[i+1], nums[i+1])$</p>
+<p>$global[i+1] = max(local[i+1], global[i])$</p>
+<p>第二个式子这么理解，<code>global[i+1]</code>取值来源有以下两种，取最大即可：</p>
+<ul>
+<li>包含<code>nums[i+1]</code>的子数组和(<code>local[i+1]</code>)</li>
+<li>不包含<code>nums[i+1]</code>的子数组和(<code>global[i]</code>)</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubarray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (nums == <span class="keyword">null</span> || nums.length == <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span>[] local = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">int</span>[] global = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length + <span class="number">1</span>];</span><br><span class="line">    global[<span class="number">0</span>] = Integer.MIN_VALUE;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= nums.length; ++i) &#123;</span><br><span class="line">        local[i] = Math.max(local[i - <span class="number">1</span>] + nums[i - <span class="number">1</span>], nums[i - <span class="number">1</span>]);</span><br><span class="line">        global[i] = Math.max(global[i - <span class="number">1</span>], local[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> global[nums.length];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><em>Solution 3 - DP(sum(nums[0…m]) - sum(nums[0…n]))</em></p>
+<p>这种方法不直接存<code>nums[0...i]</code>的最大子数组和，存的是<code>nums[0...i]</code>子数组的最小子数组和(存在<code>minSum</code>数组中)，因为子数组<code>nums[m+1...n]</code>的和可以看成两个从第一个数开始的子数组(<code>nums[0...m]</code>和<code>nums[0...n]</code>)的差。这个思想也是<a href="https://leetcode-cn.com/problems/range-sum-query-immutable/" target="_blank" rel="noopener">Range Sum Query</a>的关键，还在<a href="https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/" target="_blank" rel="noopener">买卖股票</a>那道题中出现过，也是一种经典思想了。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">maxSubArray</span><span class="params">(<span class="keyword">int</span>[] nums)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// the sum of subarray equals the subtraction of two arrays, both starting from index 0</span></span><br><span class="line">    <span class="comment">// so it is max(nums[0: m]) - min(nums[0: n]) where n &lt; m</span></span><br><span class="line">    <span class="keyword">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> minSum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> res = Integer.MIN_VALUE;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> num : nums) &#123;</span><br><span class="line">        <span class="comment">// minSum denotes the minimum sum in subarray nums[0: n-1] (excluding nums[n])</span></span><br><span class="line">        minSum = Math.min(minSum, sum);</span><br><span class="line">        sum += num;</span><br><span class="line">        res = Math.max(res, sum - minSum);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h1 id="Maximum-Subarray-II"><a href="#Maximum-Subarray-II" class="headerlink" title="Maximum Subarray II"></a>Maximum Subarray II</h1><h1 id="Maximum-Subarray-III"><a href="#Maximum-Subarray-III" class="headerlink" title="Maximum Subarray III"></a>Maximum Subarray III</h1>
       
     </div>
 
@@ -612,8 +655,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -737,6 +789,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Maximum-Subarray"><span class="nav-number">1.</span> <span class="nav-text">Maximum Subarray</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Maximum-Subarray-II"><span class="nav-number">2.</span> <span class="nav-text">Maximum Subarray II</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Maximum-Subarray-III"><span class="nav-number">3.</span> <span class="nav-text">Maximum Subarray III</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top motion-element">
@@ -770,7 +839,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">16k</span>
+    <span title="Symbols count total">19k</span>
   
 
   
@@ -779,7 +848,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">27 mins.</span>
+    <span title="Reading time total">32 mins.</span>
   
 </div>
 
@@ -914,6 +983,46 @@
   
   
 
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+    
   
 
 

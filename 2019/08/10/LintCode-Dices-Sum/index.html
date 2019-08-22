@@ -144,18 +144,18 @@
   };
 </script>
 
-  <meta name="description" content="Source:   LintCode: (20) Dices Sum  DescriptionThrow n dices, the sum of the dices’ faces is S. Given n, find the all possible value of S along with its probability. Example: Example 1:Input: n = 1Out">
+  <meta name="description" content="Source:   LintCode: (20) Dices Sum  Description Throw n dices, the sum of the dices’ faces is S. Given n, find the all possible value of S along with its probability. Example: Example 1:Input: n = 1Ou">
 <meta name="keywords" content="DP">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dices Sum">
 <meta property="og:url" content="https://wsntxxn.github.io/2019/08/10/LintCode-Dices-Sum/index.html">
 <meta property="og:site_name" content="xxn&#39;s learning">
-<meta property="og:description" content="Source:   LintCode: (20) Dices Sum  DescriptionThrow n dices, the sum of the dices’ faces is S. Given n, find the all possible value of S along with its probability. Example: Example 1:Input: n = 1Out">
+<meta property="og:description" content="Source:   LintCode: (20) Dices Sum  Description Throw n dices, the sum of the dices’ faces is S. Given n, find the all possible value of S along with its probability. Example: Example 1:Input: n = 1Ou">
 <meta property="og:locale" content="zh-HANS">
-<meta property="og:updated_time" content="2019-08-13T14:40:43.335Z">
+<meta property="og:updated_time" content="2019-08-20T12:27:56.353Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dices Sum">
-<meta name="twitter:description" content="Source:   LintCode: (20) Dices Sum  DescriptionThrow n dices, the sum of the dices’ faces is S. Given n, find the all possible value of S along with its probability. Example: Example 1:Input: n = 1Out">
+<meta name="twitter:description" content="Source:   LintCode: (20) Dices Sum  Description Throw n dices, the sum of the dices’ faces is S. Given n, find the all possible value of S along with its probability. Example: Example 1:Input: n = 1Ou">
 
 
 
@@ -445,7 +445,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-13 22:40:43" itemprop="dateModified" datetime="2019-08-13T22:40:43+08:00">2019-08-13</time>
+                <time title="Modified: 2019-08-20 20:27:56" itemprop="dateModified" datetime="2019-08-20T20:27:56+08:00">2019-08-20</time>
               </span>
             
           
@@ -523,10 +523,12 @@
 <ul>
 <li>LintCode: <a href="https://www.lintcode.com/problem/dices-sum/description" target="_blank" rel="noopener">(20) Dices Sum</a></li>
 </ul>
-<h4 id="Description"><a href="#Description" class="headerlink" title="Description"></a><strong>Description</strong></h4><p>Throw n dices, the sum of the dices’ faces is S. Given n, find the all possible value of S along with its probability.</p>
+<h4 id="Description"><a href="#Description" class="headerlink" title="Description"></a><strong>Description</strong></h4><blockquote>
+<p>Throw n dices, the sum of the dices’ faces is S. Given n, find the all possible value of S along with its probability.</p>
 <p><strong>Example</strong>:</p>
 <p><strong>Example 1</strong>:<br>Input: n = 1<br>Output: [[1, 0.17], [2, 0.17], [3, 0.17], [4, 0.17], [5, 0.17], [6, 0.17]]<br>Explanation: Throw a dice, the sum of the numbers facing up may be 1, 2, 3, 4, 5, 6, and the probability of each result is 0.17.</p>
 <p><strong>Example 2</strong>:<br>Input: n = 2<br>Output: [[2,0.03],[3,0.06],[4,0.08],[5,0.11],[6,0.14],[7,0.17],[8,0.14],[9,0.11],[10,0.08],[11,0.06],[12,0.03]]<br>Explanation: Throw two dices, the sum of the numbers facing up may be in [2,12], and the probability of each result is different.</p>
+</blockquote>
 <h4 id="Analysis-amp-Solution"><a href="#Analysis-amp-Solution" class="headerlink" title="Analysis &amp; Solution"></a><strong>Analysis &amp; Solution</strong></h4><p>这道题要求掷n次骰子得到的和为各个值的概率。首先，和的范围是[n, 6n]，返回的结果应当包含其中每个值和对应的概率的键值对。很自然的想法是，将和分解为每次扔骰子的点数，最后和为某个值的概率就是分法数乘上$(\frac{1}{6})^n$。然而，可想而知n一旦变大，分法数增长得可怕。</p>
 <p>更重要的是，在操作的过程中，有重复的计算操作。例如，看扔4次和为6的条件下，其中的两种分法：</p>
 <p>\begin{equation*}\begin{split}<br>6 &amp;= 3(前两次点数之和) + 1(第三次点数) + 2(第四次点数)\\<br>  &amp;= 3(前两次点数之和) + 2(第三次点数) + 1(第四次点数)\\<br>\end{split}\end{equation*}</p>
@@ -825,7 +827,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">16k</span>
+    <span title="Symbols count total">19k</span>
   
 
   
@@ -834,7 +836,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">27 mins.</span>
+    <span title="Reading time total">32 mins.</span>
   
 </div>
 
