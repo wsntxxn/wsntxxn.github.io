@@ -152,14 +152,16 @@
 </script>
 
   <meta name="description" content="Recording something reminds me that I&apos;m still alive.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="xxn&#39;s learning">
-<meta property="og:url" content="https://wsntxxn.github.io/archives/2019/07/index.html">
+<meta name="keywords" content="PyTorch,RNN">
+<meta property="og:type" content="article">
+<meta property="og:title" content="PyTorch 中的 RNN: pack 与解 pack">
+<meta property="og:url" content="https://wsntxxn.github.io/2019/08/23/PyTorch中的RNN-pack与解pack/index.html">
 <meta property="og:site_name" content="xxn&#39;s learning">
 <meta property="og:description" content="Recording something reminds me that I&apos;m still alive.">
 <meta property="og:locale" content="zh-HANS">
+<meta property="og:updated_time" content="2019-08-23T08:13:39.105Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="xxn&#39;s learning">
+<meta name="twitter:title" content="PyTorch 中的 RNN: pack 与解 pack">
 <meta name="twitter:description" content="Recording something reminds me that I&apos;m still alive.">
 
 
@@ -168,7 +170,7 @@
 
   
   
-  <link rel="canonical" href="https://wsntxxn.github.io/archives/2019/07/">
+  <link rel="canonical" href="https://wsntxxn.github.io/2019/08/23/PyTorch中的RNN-pack与解pack/">
 
 
 
@@ -179,7 +181,7 @@
 </script>
 
   
-  <title>Archive | xxn's learning</title>
+  <title>PyTorch 中的 RNN: pack 与解 pack | xxn's learning</title>
   
 
 
@@ -227,7 +229,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-archive">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -333,7 +335,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -370,104 +372,232 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+
+  
+
   
   
   
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
 
-      
-      <span class="archive-page-counter">
-        
-        
-        
-          
-        
-        Um..! 6 posts in total. Keep on posting.
-      </span>
-      
-
-      
-
-        
-        
-        
-
-        
-          
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
-          </div>
-        
-        
-
-        
+  
+    <div class="reading-progress-bar"></div>
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://wsntxxn.github.io/2019/08/23/PyTorch中的RNN-pack与解pack/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Xuenan Xu">
+      <meta itemprop="description" content="Recording something reminds me that I'm still alive.">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xxn's learning">
+    </span>
+
+    
+      <header class="post-header">
+
         
-          <a class="post-title-link" href="/2019/07/24/EM算法简介/" itemprop="url">
-            
-              <span itemprop="name">EM 算法简介</span>
-            
-          </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">PyTorch 中的 RNN: pack 与解 pack
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-07-24T14:55:20+08:00" content="2019-07-24">
-          07-24
-        </time>
-      </div>
+              
+            
+          </h1>
+        
 
-    </header>
-  </article>
+        <div class="post-meta">
 
+          
+          
+          
 
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+
+              
+                
+              
+
+              <time title="Created: 2019-08-23 10:14:38 / Modified: 16:13:39" itemprop="dateCreated datePublished" datetime="2019-08-23T10:14:38+08:00">2019-08-23</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Deep-Learning/" itemprop="url" rel="index"><span itemprop="name">Deep Learning</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+          
+
+          
+          
+
+          
+
+          
+
+          <br>
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-file-word-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Symbols count in article: </span>
+              
+              <span title="Symbols count in article">0</span>
+            </span>
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-clock-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Reading time &asymp;</span>
+              
+              <span title="Reading time">1 mins.</span>
+            </span>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
+      
 
+      
+        
+      
     </div>
+
+    
+
+    
+      
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/PyTorch/" rel="tag"># PyTorch</a>
+          
+            <a href="/tags/RNN/" rel="tag"># RNN</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/13/ShadowSocks全平台科学上网Guidance/" rel="next" title="ShadowSocks 全平台科学上网 Guidance">
+                <i class="fa fa-chevron-left"></i> ShadowSocks 全平台科学上网 Guidance
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="gitalk-container">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -777,6 +907,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
 
   <script src="/js/next-boot.js?v=7.2.0"></script>
 
@@ -804,6 +938,37 @@
 
 
 
+
+  
+    
+
+<script src="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+
+
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+
+
+<script src="//cdn.jsdelivr.net/npm/js-md5@0.7.3/src/md5.min.js"></script>
+
+<script>
+  var gitalk = new Gitalk({
+    clientID: '37070b5f6a73a75d8f2d',
+    clientSecret: 'f4be766333feac5d35f38432d8e81fd5676a2c91',
+    repo: 'wsntxxn.github.io',
+    owner: 'wsntxxn',
+    admin: ['wsntxxn'],
+    id: md5(location.pathname),
+    
+      language: window.navigator.language || window.navigator.userLanguage,
+    
+    distractionFreeMode: 'true'
+  });
+  gitalk.render('gitalk-container');
+</script>
+
+  
 
 
 

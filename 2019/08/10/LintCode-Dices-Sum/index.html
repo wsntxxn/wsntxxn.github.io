@@ -110,6 +110,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-mac-osx.min.css?v=1.0.2">
+
 
 
 
@@ -122,7 +129,7 @@
     version: '7.2.0',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
@@ -152,7 +159,7 @@
 <meta property="og:site_name" content="xxn&#39;s learning">
 <meta property="og:description" content="Source:   LintCode: (20) Dices Sum  Description Throw n dices, the sum of the dices’ faces is S. Given n, find the all possible value of S along with its probability. Example: Example 1:Input: n = 1Ou">
 <meta property="og:locale" content="zh-HANS">
-<meta property="og:updated_time" content="2019-08-20T12:27:56.353Z">
+<meta property="og:updated_time" content="2019-08-23T08:14:43.629Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dices Sum">
 <meta name="twitter:description" content="Source:   LintCode: (20) Dices Sum  Description Throw n dices, the sum of the dices’ faces is S. Given n, find the all possible value of S along with its probability. Example: Example 1:Input: n = 1Ou">
@@ -445,7 +452,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-20 20:27:56" itemprop="dateModified" datetime="2019-08-20T20:27:56+08:00">2019-08-20</time>
+                <time title="Modified: 2019-08-23 16:14:43" itemprop="dateModified" datetime="2019-08-23T16:14:43+08:00">2019-08-23</time>
               </span>
             
           
@@ -535,10 +542,10 @@
 <p>就这两种分法而言，不管后两次扔了多少，前两次扔的和为3的分法数都是要计算的，于是这个数就被计算了两次。随着n增大，这样重复的计算比比皆是，于是，一个自然的想法就是：自底而上，将前面的结果存起来(比如前两次扔到3的分法数之和)，也就是动态规划。</p>
 <p>没错，这道题也是典型的DP，鉴于分解数和概率只有一个$(\frac{1}{6})^n$的差别，这里就直接在矩阵中存储概率值了，代码如下：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;Map.Entry&lt;Integer, Double&gt;&gt; dicesSum(<span class="keyword">int</span> n) &#123;</span><br><span class="line">    List&lt;Map.Entry&lt;Integer, Double&gt;&gt; res = <span class="keyword">new</span> ArrayList();</span><br><span class="line">    <span class="keyword">double</span>[][] probs = <span class="keyword">new</span> <span class="keyword">double</span>[n+<span class="number">1</span>][<span class="number">6</span>*n + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">6</span>; ++i)</span><br><span class="line">        probs[<span class="number">1</span>][i] = <span class="number">1.0</span> / <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="comment">// Throw i times, computing and store probs in tmp</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt;= <span class="number">6</span> * i; ++j) &#123;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> lastDice = Math.max(j - <span class="number">6</span>*i + <span class="number">6</span>, <span class="number">1</span>); lastDice &lt;= Math.min(<span class="number">6</span>, j - i + <span class="number">1</span>); ++lastDice) &#123;</span><br><span class="line">                <span class="comment">// throwing (i-1) times get (i-1) sum at least</span></span><br><span class="line">                probs[i][j] += probs[i - <span class="number">1</span>][j - lastDice];</span><br><span class="line">            &#125;</span><br><span class="line">            probs[i][j] /= <span class="number">6</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &lt;= <span class="number">6</span>*n; ++i)</span><br><span class="line">      	res.add(<span class="keyword">new</span> AbstractMap.SimpleEntry&lt;Integer, Double&gt;(i, probs[n][i]));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>probs[i][j]表示掷i次骰子和为j的概率，递推公式就是将最后一次掷骰子可能的点数遍历一遍，概率求和：</p>
+<p><code>probs[i][j]</code>表示掷<code>i</code>次骰子和为<code>j</code>的概率，递推公式就是将最后一次掷骰子可能的点数遍历一遍，概率求和：</p>
 <p>$$probs[i][j] = \sum_\limits{k=k_1}^{k_2}probs[i-1][j-k] \times \frac{1}{6}$$</p>
-<p>k1和k2是最后一次掷骰子点数的取值范围，很容易算出。</p>
-<p>另外，DP过程中可以发现，求掷i次各个和的概率时，只要用到掷i-1次各个和的概率，掷0 ~ i-2次的结果都用不上，而且纵坐标大于6i的部分都被浪费了。于是，从节省空间的角度，可以将矩阵简化为一个size=6n的数组，每一轮更新下标为[i, 6i]的部分，即掷i次和为各个值的概率：</p>
+<p><code>k1</code>和<code>k2</code>是最后一次掷骰子点数的取值范围，很容易算出。</p>
+<p>另外，DP过程中可以发现，求掷<code>i</code>次各个和的概率时，只要用到掷<code>i-1</code>次各个和的概率，掷0 ~ i-2次的结果都用不上，而且纵坐标大于6i的部分都被浪费了。于是，从节省空间的角度，可以将矩阵简化为一个size = <code>6n</code>的数组，每一轮更新下标为[i, 6i]的部分，即掷<code>i</code>次和为各个值的概率：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> List&lt;Map.Entry&lt;Integer, Double&gt;&gt; dicesSum(<span class="keyword">int</span> n) &#123;</span><br><span class="line">    List&lt;Map.Entry&lt;Integer, Double&gt;&gt; res = <span class="keyword">new</span> ArrayList();</span><br><span class="line">    <span class="keyword">double</span>[] probs = <span class="keyword">new</span> <span class="keyword">double</span>[<span class="number">6</span>*n + <span class="number">1</span>];</span><br><span class="line">    <span class="keyword">double</span>[] tmp = <span class="keyword">new</span> <span class="keyword">double</span>[<span class="number">6</span>*n + <span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">6</span>; ++i)</span><br><span class="line">      	probs[i] = <span class="number">1.0</span> / <span class="number">6</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">2</span>; i &lt;= n; ++i) &#123;</span><br><span class="line">        <span class="comment">// Throw i times, computing and store probs in tmp</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt;= <span class="number">6</span>*i; ++j) &#123;</span><br><span class="line">            <span class="comment">// When throwing i times, the prob summing j is stored in tmp[j]</span></span><br><span class="line">            <span class="comment">// throwing (i-1) times and prob summing j is stored in probs[j]</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> lastDice = Math.max(j - <span class="number">6</span>*i + <span class="number">6</span>, <span class="number">1</span>); lastDice &lt;= Math.min(<span class="number">6</span>, j - i + <span class="number">1</span>); ++lastDice) &#123;</span><br><span class="line">                <span class="comment">// throwing (i-1) times get (i-1) sum at least</span></span><br><span class="line">                tmp[j] += probs[j - lastDice];</span><br><span class="line">            &#125;</span><br><span class="line">            tmp[j] /= <span class="number">6</span>;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Transfer probabilities from tmp to probs</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt;= <span class="number">6</span>*i; ++j)</span><br><span class="line">            probs[j] = tmp[j];</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = n; i &lt;= <span class="number">6</span>*n; ++i)</span><br><span class="line">        res.add(<span class="keyword">new</span> AbstractMap.SimpleEntry&lt;Integer, Double&gt;(i, probs[i]));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
@@ -583,8 +590,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/07/24/EM算法简介/" rel="next" title="EM算法简介">
-                <i class="fa fa-chevron-left"></i> EM算法简介
+              <a href="/2019/07/24/EM算法简介/" rel="next" title="EM 算法简介">
+                <i class="fa fa-chevron-left"></i> EM 算法简介
               </a>
             
           </div>
@@ -669,7 +676,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -694,7 +701,9 @@
         
           
         
-        <span class="site-state-item-count">4</span>
+          
+        
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -721,7 +730,13 @@
         
           
         
-        <span class="site-state-item-count">5</span>
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span>
         </a>
       </div>
@@ -827,7 +842,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">19k</span>
+    <span title="Symbols count total">25k</span>
   
 
   
@@ -836,7 +851,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">32 mins.</span>
+    <span title="Reading time total">42 mins.</span>
   
 </div>
 

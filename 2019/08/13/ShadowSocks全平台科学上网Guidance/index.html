@@ -110,6 +110,13 @@
 
 
 
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-mac-osx.min.css?v=1.0.2">
+
 
 
 
@@ -122,7 +129,7 @@
     version: '7.2.0',
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false},
     back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    copycode: {"enable":true,"show_result":true,"style":"mac"},
+    copycode: {"enable":true,"show_result":true,"style":"default"},
     fancybox: false,
     mediumzoom: false,
     lazyload: false,
@@ -147,15 +154,15 @@
   <meta name="description" content="前言ShadowSocks 基本认识本文介绍用ShadowSocks这个工具进行科学上网的配置方法，不知道啥是科学上网或者为啥要科学上网的童鞋可以不用再看下去了，相信你也没这个需求。。。 至于为啥选择ShadowSocks呢？笔者表示当年用了很长时间的Lantern突然被封，其它VPN找了半天，免费的速度太慢，收费的又比较贵，对比之下ShadowSocks以稳定著名，价格也能接受，还可以自己租服务">
 <meta name="keywords" content="网络,科学上网">
 <meta property="og:type" content="article">
-<meta property="og:title" content="ShadowSocks全平台科学上网Guidance">
+<meta property="og:title" content="ShadowSocks 全平台科学上网 Guidance">
 <meta property="og:url" content="https://wsntxxn.github.io/2019/08/13/ShadowSocks全平台科学上网Guidance/index.html">
 <meta property="og:site_name" content="xxn&#39;s learning">
 <meta property="og:description" content="前言ShadowSocks 基本认识本文介绍用ShadowSocks这个工具进行科学上网的配置方法，不知道啥是科学上网或者为啥要科学上网的童鞋可以不用再看下去了，相信你也没这个需求。。。 至于为啥选择ShadowSocks呢？笔者表示当年用了很长时间的Lantern突然被封，其它VPN找了半天，免费的速度太慢，收费的又比较贵，对比之下ShadowSocks以稳定著名，价格也能接受，还可以自己租服务">
 <meta property="og:locale" content="zh-HANS">
 <meta property="og:image" content="https://wsntxxn.github.io/2019/08/13/ShadowSocks全平台科学上网Guidance/shadowsocks_to_config_download.png">
-<meta property="og:updated_time" content="2019-08-22T12:48:21.877Z">
+<meta property="og:updated_time" content="2019-08-23T08:13:21.089Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="ShadowSocks全平台科学上网Guidance">
+<meta name="twitter:title" content="ShadowSocks 全平台科学上网 Guidance">
 <meta name="twitter:description" content="前言ShadowSocks 基本认识本文介绍用ShadowSocks这个工具进行科学上网的配置方法，不知道啥是科学上网或者为啥要科学上网的童鞋可以不用再看下去了，相信你也没这个需求。。。 至于为啥选择ShadowSocks呢？笔者表示当年用了很长时间的Lantern突然被封，其它VPN找了半天，免费的速度太慢，收费的又比较贵，对比之下ShadowSocks以稳定著名，价格也能接受，还可以自己租服务">
 <meta name="twitter:image" content="https://wsntxxn.github.io/2019/08/13/ShadowSocks全平台科学上网Guidance/shadowsocks_to_config_download.png">
 
@@ -176,7 +183,7 @@
 </script>
 
   
-  <title>ShadowSocks全平台科学上网Guidance | xxn's learning</title>
+  <title>ShadowSocks 全平台科学上网 Guidance | xxn's learning</title>
   
 
 
@@ -406,7 +413,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">ShadowSocks全平台科学上网Guidance
+          <h1 class="post-title" itemprop="name headline">ShadowSocks 全平台科学上网 Guidance
 
               
             
@@ -447,7 +454,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-22 20:48:21" itemprop="dateModified" datetime="2019-08-22T20:48:21+08:00">2019-08-22</time>
+                <time title="Modified: 2019-08-23 16:13:21" itemprop="dateModified" datetime="2019-08-23T16:13:21+08:00">2019-08-23</time>
               </span>
             
           
@@ -490,7 +497,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span title="Symbols count in article">5.5k</span>
+              <span title="Symbols count in article">5.6k</span>
             </span>
           
 
@@ -523,20 +530,20 @@
       
         <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><h3 id="ShadowSocks-基本认识"><a href="#ShadowSocks-基本认识" class="headerlink" title="ShadowSocks 基本认识"></a>ShadowSocks 基本认识</h3><p>本文介绍用<code>ShadowSocks</code>这个工具进行科学上网的配置方法，不知道啥是科学上网或者为啥要科学上网的童鞋可以不用再看下去了，相信你也没这个需求。。。</p>
 <p>至于为啥选择<code>ShadowSocks</code>呢？笔者表示当年用了很长时间的<code>Lantern</code>突然被封，其它VPN找了半天，免费的速度太慢，收费的又比较贵，对比之下<code>ShadowSocks</code>以稳定著名，价格也能接受，还可以自己租服务器搭服务，于是果断ss。。。</p>
-<p>既然用的工具是<code>ShadowSocks</code>，那么对它还是要有一些基本的认识：<a href="https://shadowsocks.org/en/index.html" target="_blank" rel="noopener">ShadowSocks</a>本身是一套基于Socks5代理方式加密的在网络上传输数据的技术，常被简称为<code>ss</code>。既然要实现网络数据传输，服务端和客户端总是少不了的。简单来说，通过<code>ss</code>科学上网，就是将传输的数据通过服务端和客户端的加密，通过GFW的检测。</p>
-<p>比如你要访问<a href="https://www.google.com" target="_blank" rel="noopener">Google</a>，那么发出请求的过程中数据是这样传输的：</p>
+<p>既然用的工具是<code>ShadowSocks</code>，那么对它还是要有一些基本的认识：<a href="https://shadowsocks.org/en/index.html" target="_blank" rel="noopener">ShadowSocks</a> 本身是一套基于 Socks5 代理方式加密的在网络上传输数据的技术，常被简称为<code>ss</code>。既然要实现网络数据传输，服务端和客户端总是少不了的。简单来说，通过<code>ss</code>科学上网，就是将传输的数据通过服务端和客户端的加密，通过 GFW 的检测。</p>
+<p>比如你要访问 <a href="https://www.google.com" target="_blank" rel="noopener">Google</a>，那么发出请求的过程中数据是这样传输的：</p>
 <p>本地应用 -&gt; ss 客户端 -&gt; ss 服务端 -&gt; Google主机</p>
-<p>其中ss客户端安装在你的电脑上，而ss服务端安装在境外(或者其他能够访问Google的)服务器上，数据在它们之间的传输是用Socks5加密的。</p>
-<p>注意，ss本身只是一项技术，不要把它和提供ss服务器的公司、以及科学上网这个概念搞混了。</p>
-<h3 id="v2ray"><a href="#v2ray" class="headerlink" title="v2ray"></a>v2ray</h3><p>其实，数据只经过ss一次转发还不是很安全，有一种叫做<code>v2ray</code>的技术，可以将数据再进行一次加密传输，提高安全性。如果加入<code>v2ray</code>，那么数据传输的过程就是：</p>
+<p>其中ss客户端安装在你的电脑上，而ss服务端安装在境外(或者其他能够访问 Google 的)服务器上，数据在它们之间的传输是用 Socks5 加密的。</p>
+<p>注意，<code>ss</code>本身只是一项技术，不要把它和提供<code>ss</code>服务器的公司、以及科学上网这个概念搞混了。</p>
+<h3 id="v2ray"><a href="#v2ray" class="headerlink" title="v2ray"></a>v2ray</h3><p>其实，数据只经过<code>ss</code>一次转发还不是很安全，有一种叫做<code>v2ray</code>的技术，可以将数据再进行一次加密传输，提高安全性。如果加入<code>v2ray</code>，那么数据传输的过程就是：</p>
 <p>本地应用 -&gt; ss 客户端 -&gt; v2ray 服务器 -&gt; ss 服务器 -&gt; 境外主机</p>
-<p>其中，v2ray安装在境内的服务器上，和我们的本地机器直接传输数据，有兴趣的朋友可以上<a href="https://www.v2ray.com/" target="_blank" rel="noopener">官网</a>研究怎么配置，本文并不涉及v2ray的配置。</p>
+<p>其中，<code>v2ray</code>安装在境内的服务器上，和我们的本地机器直接传输数据，有兴趣的朋友可以上<a href="https://www.v2ray.com/" target="_blank" rel="noopener">官网</a>研究怎么配置，本文并不涉及<code>v2ray</code>的配置。</p>
 <hr>
 <h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><p>ss服务器可以通过这些方式获得：</p>
 <ul>
-<li><p>购买第三方服务商(如<a href="https://order.shadowsocks.se/" target="_blank" rel="noopener">shadowsocks.to</a>)的ss服务</p>
+<li><p>购买第三方服务商(如 <a href="https://order.shadowsocks.se/" target="_blank" rel="noopener">shadowsocks.to</a>)的ss服务</p>
 </li>
-<li><p>自己租VPS，在服务器上搭建ss服务</p>
+<li><p>自己租VPS，在服务器上搭建<code>ss</code>服务</p>
 </li>
 <li><p>在网上搜免费的<code>ss</code>服务器，白嫖</p>
 </li>
@@ -544,29 +551,29 @@
 <p>下面就分别介绍一下如何操作。</p>
 <h3 id="购买第三方-ss-服务"><a href="#购买第三方-ss-服务" class="headerlink" title="购买第三方 ss 服务"></a>购买第三方 ss 服务</h3><p><strong>优点</strong>：省心，不需要自己配置服务端的密码、加密方式等信息，如果哪天被和谐了也可以很快更换服务器</p>
 <p><strong>缺点</strong>：通常有连接数和使用流量限制，不过最初级的服务器和流量也够大多数个人用户使用了</p>
-<p>这里推荐笔者自己使用的<a href="https://order.shadowsocks.se/" target="_blank" rel="noopener">shadowsocks.to</a>这个提供商提供的ss服务，效果不错。注意，提供商的网址修改了多次，因此前面放上来的链接可能已经失效了。</p>
+<p>这里推荐笔者自己使用的 <a href="https://order.shadowsocks.se/" target="_blank" rel="noopener">shadowsocks.to</a> 这个提供商提供的<code>ss</code>服务，效果不错。注意，提供商的网址修改了多次，因此前面放上来的链接可能已经失效了。</p>
 <p>对于个人而言，选择“入门版”已经够用了，具体如何购买这里就不阐述了，网站上很容易找到入口。</p>
 <p>付完款后，还需要将配置文件下载下来，里面包含了各个服务器节点的域名、端口、密码、加密方式等信息，等下配置客户端的时候要用到。</p>
 <p><img src="shadowsocks_to_config_download.png" alt="配置文件下载位置"></p>
-<p>另外，各个服务器节点旁边的二维码在配置移动端(Android、iOS)的ss客户端时也要用到。</p>
+<p>另外，各个服务器节点旁边的二维码在配置移动端(Android、iOS)的<code>ss</code>客户端时也要用到。</p>
 <h3 id="自己搭建ss服务"><a href="#自己搭建ss服务" class="headerlink" title="自己搭建ss服务"></a>自己搭建ss服务</h3><p><strong>优点</strong>：配置自由；流量不受限制；可以给多人使用</p>
-<p><strong>缺点</strong>：有一定技术门槛；如果IP被封，需要换服务器</p>
-<p><a href="https://shadowsocks.org/en/index.html" target="_blank" rel="noopener">ShadowSocks</a>官网上有关于如何<a href="https://shadowsocks.org/en/download/servers.html" target="_blank" rel="noopener">搭建服务器</a>和<a href="https://shadowsocks.org/en/config/quick-guide.html" target="_blank" rel="noopener">配置信息</a>的说明，按照上面的教程就可以搭好服务器，下面简单地介绍一下基础的步骤：</p>
-<h4 id="准备服务器"><a href="#准备服务器" class="headerlink" title="准备服务器"></a>准备服务器</h4><p>一台能够访问外网的VPS主机是必要的，可以从典型的服务商如<a href="https://www.vultr.com/" target="_blank" rel="noopener">Vultr</a>处购买，然后通过<code>ssh</code>登录主机，安装<code>ss</code>服务。</p>
-<h4 id="用pip安装ss服务"><a href="#用pip安装ss服务" class="headerlink" title="用pip安装ss服务"></a>用pip安装ss服务</h4><p>一般的主机上都默认安装有Python2和<code>pip</code>，连接VPS主机，打开终端检查一下：</p>
+<p><strong>缺点</strong>：有一定技术门槛；如果 IP 被封，需要换服务器</p>
+<p><a href="https://shadowsocks.org/en/index.html" target="_blank" rel="noopener">ShadowSocks</a> 官网上有关于如何<a href="https://shadowsocks.org/en/download/servers.html" target="_blank" rel="noopener">搭建服务器</a>和<a href="https://shadowsocks.org/en/config/quick-guide.html" target="_blank" rel="noopener">配置信息</a>的说明，按照上面的教程就可以搭好服务器，下面简单地介绍一下基础的步骤：</p>
+<h4 id="准备服务器"><a href="#准备服务器" class="headerlink" title="准备服务器"></a>准备服务器</h4><p>一台能够访问外网的 VPS 主机是必要的，可以从典型的服务商如 <a href="https://www.vultr.com/" target="_blank" rel="noopener">Vultr</a> 处购买，然后通过<code>ssh</code>登录主机，安装<code>ss</code>服务。</p>
+<h4 id="用pip安装ss服务"><a href="#用pip安装ss服务" class="headerlink" title="用pip安装ss服务"></a>用pip安装ss服务</h4><p>一般的主机上都默认安装有Python2和<code>pip</code>，连接 VPS 主机，打开终端检查一下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@xxn:~# python --version</span><br><span class="line">Python 2.7.12</span><br></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@xxn:~# pip --version</span><br><span class="line">pip 19.0.3 from /usr/local/lib/python2.7/dist-packages/pip (python 2.7)</span><br></pre></td></tr></table></figure>
 <p>接着就可以用<code>pip</code>去安装<code>ShadowSocks</code>了：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install shadowsocks</span><br></pre></td></tr></table></figure>
-<h4 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h4><p>编辑一个配置文件，里面写好配置信息，用于启动ss服务。文件的位置可以随便放，只要你知道在哪里，这里以<code>/etc/shadowsocks.json</code>为例，新建<code>/etc/shadowsocks.json</code>文件，写入内容：</p>
+<h4 id="编辑配置文件"><a href="#编辑配置文件" class="headerlink" title="编辑配置文件"></a>编辑配置文件</h4><p>编辑一个配置文件，里面写好配置信息，用于启动<code>ss</code>服务。文件的位置可以随便放，只要你知道在哪里，这里以<code>/etc/shadowsocks.json</code>为例，新建<code>/etc/shadowsocks.json</code>文件，写入内容：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"server_port"</span>: <span class="number">45630</span>,</span><br><span class="line">  <span class="attr">"password"</span>: <span class="string">"Tgc6zqgeIA"</span>,</span><br><span class="line">  <span class="attr">"method"</span>: <span class="string">"aes-256-cfb"</span>,</span><br><span class="line">  <span class="attr">"timeout"</span>: <span class="number">300</span>,</span><br><span class="line">  <span class="attr">"mode"</span>: <span class="string">"tcp_and_udp"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>对应参数的意义：</p>
 <ul>
-<li><code>server_port</code>: <code>ss</code>服务的端口，可以随意取值，一般在1024~65536，不和常用其他端口冲突即可</li>
+<li><code>server_port</code>: <code>ss</code>服务的端口，可以随意取值，一般在 1024~65536，不和常用其他端口冲突即可</li>
 <li><code>password</code>: 等下客户端连接时使用的密码，可以随意设置，稍复杂一些为好</li>
 <li><code>method</code>: 加密方式，可选的方式有不少，官网推荐使用<code>&quot;chacha20-ietf-poly1305&quot;</code>或者<code>&quot;aes-256-gcm&quot;</code></li>
 <li><code>timeout</code>: 超时时间(秒)</li>
-<li><code>mode</code>: <code>ss</code>服务模式，<code>&quot;tcp_and_udp&quot;</code>表示既支持tcp也支持upp</li>
+<li><code>mode</code>: <code>ss</code>服务模式，<code>&quot;tcp_and_udp&quot;</code>表示既支持 tcp 也支持 udp</li>
 </ul>
 <p>上面的参数是我服务器上的设置，各个参数都可以改，只要等下客户端参数保持一致即可。</p>
 <p>更加高级的配置信息可见<a href="https://shadowsocks.org/en/config/advanced.html" target="_blank" rel="noopener">官网</a>。</p>
@@ -575,55 +582,55 @@
 <p>其中，-c后面接配置文件的路径，-d表示<code>daemon</code>模式，即守护进程模式运行，启动后不占据终端。</p>
 <p>停止ss：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssserver -c /etc/shadowsocks.json -d stop</span><br></pre></td></tr></table></figure>
-<p>如果懂一些Linux服务技术，可以将<code>ss</code>设置成服务，用systemctl设置开机自动启动等等，不赘述了，和其他服务并无二异。</p>
+<p>如果懂一些 Linux 服务技术，可以将<code>ss</code>设置成服务，用<code>systemctl</code>设置开机自动启动等等，不赘述了，和其他服务并无二异。</p>
 <h3 id="找免费-ss-服务"><a href="#找免费-ss-服务" class="headerlink" title="找免费 ss 服务"></a>找免费 ss 服务</h3><p><strong>优点</strong>：顾名思义，省钱</p>
 <p><strong>缺点</strong>：速度不稳定，公开的服务器地址，容易被封</p>
 <p>这就没什么好讲的了，自己到网上找公开免费的<code>ss</code>服务器，下载地址、密码等信息。不推荐这种做法，因为确实不稳定。</p>
 <hr>
 <h2 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h2><h3 id="通用逻辑"><a href="#通用逻辑" class="headerlink" title="通用逻辑"></a>通用逻辑</h3><p>不论是哪个平台上的<code>ss</code>客户端，配置都是一样的思路：将<code>ss</code>服务器的配置信息(至少包括服务器地址、端口、加密方式、密码)添加到客户端即可。简单来说，保证客户端和服务端的配置信息一致，就可以连接。</p>
-<p>如果是自己在VPS上搭的服务，那么配置信息都是自己输入的，相信不会有什么问题。如果是在提供商处购买，可以直接下载配置文件，或者扫描二维码，即可添加配置信息，不用手动一个个输入。</p>
-<p>另外，客户端一般都可以设置<code>“全局模式”</code>和<code>“pac模式”</code>，顾名思义，全局模式就是所有流量均走代理，pac模式会根据GWF List判断哪些ip需要走代理，只在访问这些网站的时候走代理，从而加速国内网站的访问速度。一般不推荐全局模式，因为所有流量都走代理，容易被封。</p>
-<p>有些应用可能不那么“智能”，比如Android Studio在该走代理连接Google更新的时候不走代理，那么可以找找应用里有没有http/socks5代理的设置，host设置成127.0.0.1，端口设置成客户端暴露出来的http/socks5端口。如果应用本身不支持http/socks5代理，再开全局模式强行让它走代理。</p>
+<p>如果是自己在 VPS 上搭的服务，那么配置信息都是自己输入的，相信不会有什么问题。如果是在提供商处购买，可以直接下载配置文件，或者扫描二维码，即可添加配置信息，不用手动一个个输入。</p>
+<p>另外，客户端一般都可以设置<code>“全局模式”</code>和<code>“pac模式”</code>，顾名思义，全局模式就是所有流量均走代理，pac 模式会根据 GWF List 判断哪些 ip 需要走代理，只在访问这些网站的时候走代理，从而加速国内网站的访问速度。一般不推荐全局模式，因为所有流量都走代理，容易被封。</p>
+<p>有些应用可能不那么“智能”，比如 Android Studio 在该走代理连接 Google 更新的时候不走代理，那么可以找找应用里有没有 http/socks5 代理的设置，host设置成 127.0.0.1，端口设置成客户端暴露出来的 http/socks5 端口。如果应用本身不支持 http/socks5 代理，再开全局模式强行让它走代理。</p>
 <h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>在<a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">GitHub官网</a>上下载最新的Windows客户端，解压zip文件得到exe可执行文件，将它和配置文件放在一起，双击打开即可使用。</p>
-<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><h4 id="shadowsocks-qt5"><a href="#shadowsocks-qt5" class="headerlink" title="shadowsocks-qt5"></a>shadowsocks-qt5</h4><p>以Ubuntu为例，在<a href="https://github.com/shadowsocks/shadowsocks-qt5/releases" target="_blank" rel="noopener">GitHub官网</a>上下载最新客户端，安装之后运行，找到导入服务器配置文件的选项，导入下载好的配置文件即可。</p>
-<h4 id="终端开启"><a href="#终端开启" class="headerlink" title="终端开启"></a>终端开启</h4><p>相信Linux用户不会仅满足于图形界面，和前面在VPS上安装<code>ss</code>服务一样，首先在本地安装<code>ss</code>：</p>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><h4 id="shadowsocks-qt5"><a href="#shadowsocks-qt5" class="headerlink" title="shadowsocks-qt5"></a>shadowsocks-qt5</h4><p>以 Ubuntu 为例，在<a href="https://github.com/shadowsocks/shadowsocks-qt5/releases" target="_blank" rel="noopener">GitHub官网</a>上下载最新客户端，安装之后运行，找到导入服务器配置文件的选项，导入下载好的配置文件即可。</p>
+<h4 id="终端开启"><a href="#终端开启" class="headerlink" title="终端开启"></a>终端开启</h4><p>相信 Linux 用户不会仅满足于图形界面，和前面在 VPS 上安装<code>ss</code>服务一样，首先在本地安装<code>ss</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install shadowsocks</span><br></pre></td></tr></table></figure>
 <p>然后编辑配置文件，注意和服务器配置信息保持一致：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"server"</span>: <span class="string">"你的ss服务器地址(ip或者域名)"</span>,</span><br><span class="line">    <span class="attr">"server_port"</span>: <span class="number">45630</span>,</span><br><span class="line">    <span class="attr">"password"</span>: <span class="string">"Tgc6zqgeIA"</span>,</span><br><span class="line">    <span class="attr">"method"</span>: <span class="string">"chacha20-ietf-poly1305"</span>,</span><br><span class="line">    <span class="attr">"remarks"</span>: <span class="string">"aes-256-cfb"</span>,</span><br><span class="line">    <span class="attr">"timeout"</span>: <span class="number">300</span>,</span><br><span class="line">    <span class="attr">"local_port"</span>: <span class="number">1080</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>最后一项<code>local_port</code>是在本机上暴露的socks5端口，供其他应用走代理用。</p>
+<p>最后一项<code>local_port</code>是在本机上暴露的 socks5 端口，供其他应用走代理用。</p>
 <p>启动<code>ss</code>进程(以配置文件放在<code>/etc/shadowsocks.json</code>为例)：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sslocal -c /etc/shadowsocks.json -d start</span><br></pre></td></tr></table></figure>
-<h4 id="终端走代理"><a href="#终端走代理" class="headerlink" title="终端走代理"></a>终端走代理</h4><p>上面的设置已经够浏览器科学上网了，然而有时在终端上用pip/conda/docker进行pull/push时，如果不将源换成国内源，那么速度简直如同便秘一般让人难受，搞不好快要下完时突然连接中断，简直和吃屎一样难受。所以为何不让终端走代理，体验飞一般的感觉？</p>
-<p>当然，一般来说客户端设置成全局模式，终端就可以科学上网了，但是笔者的ubuntu偏偏不行。。。所以下面介绍一下用<code>privoxy</code>实现终端走代理：</p>
+<h4 id="终端走代理"><a href="#终端走代理" class="headerlink" title="终端走代理"></a>终端走代理</h4><p>上面的设置已经够浏览器科学上网了，然而有时在终端上用 pip/conda/docker 进行 pull/push 时，如果不将源换成国内源，那么速度简直如同便秘一般让人难受，搞不好快要下完时突然连接中断，简直和吃屎一样难受。所以为何不让终端走代理，体验飞一般的感觉？</p>
+<p>当然，一般来说客户端设置成全局模式，终端就可以科学上网了，但是笔者的 ubuntu 偏偏不行。。。所以下面介绍一下用<code>privoxy</code>实现终端走代理：</p>
 <p>安装<code>privoxy</code>:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install privoxy</span><br></pre></td></tr></table></figure>
 <p>修改配置文件，打开配置文件<code>/etc/privoxy/config</code>，取消这一行的注释：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#listen-address localhost:8118</span></span><br></pre></td></tr></table></figure>
 <p>在底部加上：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">forward-socks5 / localhost:1080 .</span><br></pre></td></tr></table></figure>
-<p>不要忘了最后的点号，8118是http代理的窗口，1080是刚才终端启动时设置的socks5端口，如果是客户端启动，要打开客户端查看socks5监听端口，修改成相应的值。</p>
+<p>不要忘了最后的点号，8118 是 http 代理的窗口，1080 是刚才终端启动时设置的 socks5 端口，如果是客户端启动，要打开客户端查看 socks5 监听端口，修改成相应的值。</p>
 <p>然后重启<code>privoxy</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service privoxy restart</span><br></pre></td></tr></table></figure>
-<p>以后开机之后要启动<code>privoxy</code>，将上面的restart改成start即可。</p>
-<p>最后还要配置两个bash变量<code>http_proxy</code>和<code>https_proxy</code>才能实现终端走代理：</p>
+<p>以后开机之后要启动<code>privoxy</code>，将上面的 restart 改成 start 即可。</p>
+<p>最后还要配置两个 bash 变量<code>http_proxy</code>和<code>https_proxy</code>才能实现终端走代理：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">"http://localhost:8118"</span></span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">"http://localhost:8118"</span></span><br></pre></td></tr></table></figure>
 <p>笔者则是直接在<code>~/.bashrc</code>中加入了两个函数控制是否走代理：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">proxy_on</span></span>() &#123;</span><br><span class="line">	<span class="built_in">export</span> http_proxy=<span class="string">"localhost:8118"</span></span><br><span class="line">	<span class="built_in">export</span> https_proxy=<span class="string">"localhost:8118"</span></span><br><span class="line">	<span class="built_in">echo</span> -e <span class="string">"Proxy started"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">proxy_off</span></span>()&#123;</span><br><span class="line">	<span class="built_in">unset</span> http_proxy</span><br><span class="line">	<span class="built_in">unset</span> https_proxy</span><br><span class="line">	<span class="built_in">echo</span> -e <span class="string">"Proxy stopped"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">proxy_on</span></span>() &#123;</span><br><span class="line">    <span class="built_in">export</span> http_proxy=<span class="string">"localhost:8118"</span></span><br><span class="line">    <span class="built_in">export</span> https_proxy=<span class="string">"localhost:8118"</span></span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">"Proxy started"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">proxy_off</span></span>()&#123;</span><br><span class="line">    <span class="built_in">unset</span> http_proxy</span><br><span class="line">    <span class="built_in">unset</span> https_proxy</span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">"Proxy stopped"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>另外，除了<code>privoxy</code>，<code>proxychains</code>也是一个不错的选择，不过笔者并没有用过。</p>
-<h3 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h3><p>mac上的客户端和Windows、linux并没有什么明显的区别，同样在<a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases" target="_blank" rel="noopener">GitHub官网</a>上下载最新客户端，导入配置文件即可。</p>
-<p>当然，在mac上也可以打开终端，从终端启动<code>ss</code>，和linux一样，不再赘述。</p>
-<h4 id="终端走代理-1"><a href="#终端走代理-1" class="headerlink" title="终端走代理"></a>终端走代理</h4><p>和Linux一样，mac上也有终端走代理的需求，实现的方法也差不多，通过<code>privoxy</code>这个工具走http代理。</p>
+<h3 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h3><p>Mac 上的客户端和 Windows、Linux 并没有什么明显的区别，同样在<a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases" target="_blank" rel="noopener">GitHub官网</a>上下载最新客户端，导入配置文件即可。</p>
+<p>当然，在 Mac 上也可以打开终端，从终端启动<code>ss</code>，和 Linux 一样，不再赘述。</p>
+<h4 id="终端走代理-1"><a href="#终端走代理-1" class="headerlink" title="终端走代理"></a>终端走代理</h4><p>和 Linux 一样，Mac 上也有终端走代理的需求，实现的方法也差不多，通过<code>privoxy</code>这个工具走 http 代理。</p>
 <p>安装<code>privoxy</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install privoxy</span><br></pre></td></tr></table></figure>
-<p>修改配置文件，在配置文件<code>/usr/local/etc/privoxy/config</code>底部加入socks5转发：</p>
+<p>修改配置文件，在配置文件<code>/usr/local/etc/privoxy/config</code>底部加入 socks5 转发：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listen-address 0.0.0.0:8118</span><br><span class="line">forward-socks5 / localhost:1080 .</span><br></pre></td></tr></table></figure>
-<p>和Linux一样，要打开客户端的偏好设置查看本机socks5监听地址，对应修改一下。</p>
+<p>和 Linux 一样，要打开客户端的偏好设置查看本机 socks5 监听地址，对应修改一下。</p>
 <p>启动<code>privoxy</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/<span class="built_in">local</span>/sbin/privoxy /usr/<span class="built_in">local</span>/etc/privoxy/config</span><br></pre></td></tr></table></figure>
-<p>最后和Linux上一样，还需要在终端设置http_proxy/https_proxy变量才能使用：</p>
+<p>最后和 Linux 上一样，还需要在终端设置<code>http_proxy</code>和<code>https_proxy</code>变量才能使用：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">"http://localhost:8118"</span></span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">"http://localhost:8118"</span></span><br></pre></td></tr></table></figure>
-<h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><p>Android移动端的设置就比较简单了，同样在<a href="https://github.com/shadowsocks/shadowsocks-android/releases" target="_blank" rel="noopener">GitHub官网</a>上直接下载apk，安装到手机，扫二维码导入服务器配置即可。</p>
-<h3 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h3><p>iOS由于不开源，客户端没那么好找。笔者找到的还不错的客户端是：<code>Potatso Lite</code>，可惜的是在国区App Store上找不到。简单的办法是，到某宝上买个美区的App Store账号，下载即可。下载完之后扫描二维码导入配置信息，系列操作和Android一样。</p>
+<h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><p>Android移动端的设置就比较简单了，同样在<a href="https://github.com/shadowsocks/shadowsocks-android/releases" target="_blank" rel="noopener">GitHub官网</a>上直接下载 apk，安装到手机，扫二维码导入服务器配置或者手动输入配置信息即可。</p>
+<h3 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h3><p>iOS由于不开源，客户端没那么好找。笔者找到的还不错的客户端是：<code>Potatso Lite</code>，可惜的是在国区 App Store 上找不到。简单的办法是，到某宝上买个美区的 App Store 账号，下载即可。下载完之后扫描二维码导入或者手动输入配置信息，系列操作和 Android 一样。</p>
 <hr>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><ol>
 <li><a href="https://crifan.github.io/scientific_network_summary/website/" target="_blank" rel="noopener">https://crifan.github.io/scientific_network_summary/website/</a></li>
@@ -684,6 +691,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/23/PyTorch中的RNN-pack与解pack/" rel="prev" title="PyTorch 中的 RNN: pack 与解 pack">
+                PyTorch 中的 RNN: pack 与解 pack <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -757,7 +768,7 @@
         
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -782,7 +793,9 @@
         
           
         
-        <span class="site-state-item-count">4</span>
+          
+        
+        <span class="site-state-item-count">5</span>
         <span class="site-state-item-name">categories</span>
         </a>
       </div>
@@ -809,7 +822,13 @@
         
           
         
-        <span class="site-state-item-count">5</span>
+          
+        
+          
+        
+          
+        
+        <span class="site-state-item-count">7</span>
         <span class="site-state-item-name">tags</span>
         </a>
       </div>
@@ -915,7 +934,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">19k</span>
+    <span title="Symbols count total">25k</span>
   
 
   
@@ -924,7 +943,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">32 mins.</span>
+    <span title="Reading time total">42 mins.</span>
   
 </div>
 
