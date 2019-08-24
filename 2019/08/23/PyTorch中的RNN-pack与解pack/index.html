@@ -151,18 +151,23 @@
   };
 </script>
 
-  <meta name="description" content="Recording something reminds me that I&apos;m still alive.">
+  <meta name="description" content="PyTorch 中处理序列的输入输出时，由于一个 batch 中的序列长度不一样，需要对输入输出进行“打包”(pack)和“解包”(unpack)的操作，主要用到pack_padded_sequence和pad_packed_sequence这两个函数。  对于序列输入，处理起来的一个难题在于输入是一个一个 batch 喂给模型的，而大多数情况下一个 batch 中的各个样本长度不相同。有人说做">
 <meta name="keywords" content="PyTorch,RNN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PyTorch 中的 RNN: pack 与解 pack">
 <meta property="og:url" content="https://wsntxxn.github.io/2019/08/23/PyTorch中的RNN-pack与解pack/index.html">
 <meta property="og:site_name" content="xxn&#39;s learning">
-<meta property="og:description" content="Recording something reminds me that I&apos;m still alive.">
+<meta property="og:description" content="PyTorch 中处理序列的输入输出时，由于一个 batch 中的序列长度不一样，需要对输入输出进行“打包”(pack)和“解包”(unpack)的操作，主要用到pack_padded_sequence和pad_packed_sequence这两个函数。  对于序列输入，处理起来的一个难题在于输入是一个一个 batch 喂给模型的，而大多数情况下一个 batch 中的各个样本长度不相同。有人说做">
 <meta property="og:locale" content="zh-HANS">
-<meta property="og:updated_time" content="2019-08-23T08:13:39.105Z">
+<meta property="og:image" content="https://wsntxxn.github.io/2019/08/23/PyTorch中的RNN-pack与解pack/RNN_input.jpg">
+<meta property="og:image" content="https://wsntxxn.github.io/2019/08/23/PyTorch中的RNN-pack与解pack/RNN_input_without_pack.jpg">
+<meta property="og:image" content="https://wsntxxn.github.io/2019/08/23/PyTorch中的RNN-pack与解pack/RNN_input_with_pack.jpg">
+<meta property="og:image" content="https://wsntxxn.github.io/2019/08/23/PyTorch中的RNN-pack与解pack/pack_padded_seq.png">
+<meta property="og:updated_time" content="2019-08-24T09:03:04.130Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyTorch 中的 RNN: pack 与解 pack">
-<meta name="twitter:description" content="Recording something reminds me that I&apos;m still alive.">
+<meta name="twitter:description" content="PyTorch 中处理序列的输入输出时，由于一个 batch 中的序列长度不一样，需要对输入输出进行“打包”(pack)和“解包”(unpack)的操作，主要用到pack_padded_sequence和pad_packed_sequence这两个函数。  对于序列输入，处理起来的一个难题在于输入是一个一个 batch 喂给模型的，而大多数情况下一个 batch 中的各个样本长度不相同。有人说做">
+<meta name="twitter:image" content="https://wsntxxn.github.io/2019/08/23/PyTorch中的RNN-pack与解pack/RNN_input.jpg">
 
 
 
@@ -437,13 +442,23 @@
                 
               
 
-              <time title="Created: 2019-08-23 10:14:38 / Modified: 16:13:39" itemprop="dateCreated datePublished" datetime="2019-08-23T10:14:38+08:00">2019-08-23</time>
+              <time title="Created: 2019-08-23 10:14:38" itemprop="dateCreated datePublished" datetime="2019-08-23T10:14:38+08:00">2019-08-23</time>
             </span>
           
 
           
             
 
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-08-24 17:03:04" itemprop="dateModified" datetime="2019-08-24T17:03:04+08:00">2019-08-24</time>
+              </span>
             
           
 
@@ -485,7 +500,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span title="Symbols count in article">0</span>
+              <span title="Symbols count in article">3.4k</span>
             </span>
           
 
@@ -497,7 +512,7 @@
               
                 <span class="post-meta-item-text">Reading time &asymp;</span>
               
-              <span title="Reading time">1 mins.</span>
+              <span title="Reading time">6 mins.</span>
             </span>
           
 
@@ -516,7 +531,58 @@
       
 
       
-        
+        <blockquote>
+<p>PyTorch 中处理序列的输入输出时，由于一个 batch 中的序列长度不一样，需要对输入输出进行“打包”(<code>pack</code>)和“解包”(<code>unpack</code>)的操作，主要用到<code>pack_padded_sequence</code>和<code>pad_packed_sequence</code>这两个函数。</p>
+</blockquote>
+<p>对于序列输入，处理起来的一个难题在于输入是一个一个 batch 喂给模型的，而大多数情况下一个 batch 中的各个样本长度不相同。有人说做 padding 不就行了吗？直接以长度最长的那个句子为标准，剩下的用 0 pad 到这个长度，但这样会有什么问题呢？</p>
+<p>举个例子，这个 batch 中有 5 个句子：</p>
+<p><img src="RNN_input.jpg" alt></p>
+<p>所有句子都被 pad 到了长度为 6，最短的 “Yes” 添加了 5 个 padding value，于是经过 RNN 得到的句子表示是有偏差的：</p>
+<p><img src="RNN_input_without_pack.jpg" alt></p>
+<p>我们期望得到的句子表示是在 padding value 输入之前的 hidden value，比如下图中处理完 “Yes” 之后的输出：</p>
+<p><img src="RNN_input_with_pack.jpg" alt></p>
+<p><code>pack_padded_sequence()</code>和<code>pad_packed_sequence()</code>这两个函数就是用来完成这个目标的。</p>
+<h1 id="pack-padded-sequence"><a href="#pack-padded-sequence" class="headerlink" title="pack_padded_sequence"></a>pack_padded_sequence</h1><blockquote>
+<p>torch.nn.utils.rnn.pack_padded_sequence(<em>input</em>, <em>lengths</em>, <em>batch_first=False</em>, <em>enforce_sorted=True</em>)</p>
+</blockquote>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>input</strong>(<code>Tensor</code>): 输入序列 batch，已经 pad 过了，shape: [T, B, *]，其中 T 是 batch中最长的序列长度</li>
+<li><strong>lengths</strong>(<code>Tensor</code>): 各个序列的长度</li>
+<li><strong>batch_first</strong>(<code>bool</code>): 如果是<code>True</code>的话，input 的 shape 就要变为[B, T, *]，第一维表示 batch 中序列的 index</li>
+<li><strong>enforce_sorted</strong>(<code>bool</code>)：如果是<code>True</code>的话，序列就需要从长到短排好序</li>
+</ul>
+<p><strong>input</strong> 经过这个 pack 打包操作之后，得到的是一个<code>PackedSequence</code>对象，这是一个包含<code>data</code>和<code>batch_sizes</code>的类，直观上来看它们是由原来 pad 好的<code>input</code>这样得到的：</p>
+<p><img src="pack_padded_seq.png" alt></p>
+<p>从这个角度来看，pack 也可以说是“压缩”，将除去 padding value 的部分压紧。得到 pack 过后的 input 就可以喂给 RNN 了。</p>
+<p>示例如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> torch.nn.utils <span class="keyword">as</span> utils</span><br><span class="line"></span><br><span class="line"><span class="comment"># x: [B, T, input_size]</span></span><br><span class="line"><span class="comment"># lengths: [B], where lengths[0] equals T</span></span><br><span class="line">packed = utils.rnn.pack_padded_sequence(x, lengths, batch_first=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># packed: PackedSequence(data, batch_sizes)</span></span><br><span class="line"><span class="comment"># - data: [total_lengths(without padding), input_size]</span></span><br><span class="line"><span class="comment"># - batch_sizes</span></span><br><span class="line">out, h_t = self.gru(packed)</span><br><span class="line"><span class="comment"># out: PackedSequence(data, batch_sizes)</span></span><br><span class="line"><span class="comment"># - data: [total_lengths(without padding), hidden_size]</span></span><br><span class="line"><span class="comment"># - batch_sizes</span></span><br><span class="line"><span class="comment"># h_t: hidden values at the last time step, [num_layers * bidirectional, batch_size, hidden_size]</span></span><br></pre></td></tr></table></figure>
+<p>这里 h_t 就是每个句子只经过原本的长度得到的隐层表示，而不是经过后面一大片 padding value 的值。</p>
+<h1 id="pad-packed-sequence"><a href="#pad-packed-sequence" class="headerlink" title="pad_packed_sequence"></a>pad_packed_sequence</h1><p>刚刚的示例中，pack 过后的 input 输入 RNN 中得到的输出 out 还是一个<code>PackedSequence</code>对象，一个句子的隐层表示并不连在一起，难以进行下一步操作，所以还需要解 pack 操作，将它变为和输入类似的带有 padding value 的<code>Tensor</code>：</p>
+<blockquote>
+<p>torch.nn.utils.rnn.pad_packed_sequence(<em>sequence</em>, <em>batch_first=False</em>, <em>padding_value=0.0</em>, <em>total_length=None</em>)</p>
+</blockquote>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li><strong>sequence</strong>(<em>PackedSequence</em>): 就是 pack 过的对象，一般是经过 RNN 的 output</li>
+<li><strong>batch_first</strong>(<code>bool</code>): 如果是<code>True</code>的话，得到的<code>Tensor</code>的 shape 为[B, T, *]，第一维表示 batch 中序列的 index，T 是 batch中最长的序列长度</li>
+<li><strong>padding_value</strong>(<code>float</code>): 很好理解，padding 用的值</li>
+<li><strong>total_length</strong>(<code>float</code>): 如果有的话，所有样本的输出都会被 pad 到这个值，而不是<code>T</code>。这在多 GPU 训练的时候用得到</li>
+</ul>
+<p>从参数就可以看出，这个函数是上面<code>pack_padded_sequence</code>的逆操作，<code>pack_padded_sequence</code>的输入是<code>pad_packed_sequence</code>的输出，后者的输出是前者的输入。</p>
+<p>示例：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">padded_output, lengths = utils.pad_packed_sequence(outputs, batch_first=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># padded_output: [B, T, hidden_size] (with padding value)</span></span><br><span class="line"><span class="comment"># lengths: same as the input length of pack_padded_sequence, where lengths[0] equals T</span></span><br></pre></td></tr></table></figure>
+<p>注意，上面有个<code>total_length</code>参数，这个在正常单卡训的时候完全用不到，但是多卡的情况下就不一样了，每块卡拿到的都是总体 batch 的一个小部分，都只 pad 到这块小 batch 中的最大长度，而经过 RNN 之后，如果不指定整个 batch 的最大长度(<code>total_length</code>)，得到的<code>padded_output</code>是没法整合成一个<code>Tensor</code>的。</p>
+<h1 id="其它-pad-pack-函数"><a href="#其它-pad-pack-函数" class="headerlink" title="其它 pad/pack 函数"></a>其它 pad/pack 函数</h1><p>PyTorch 还提供了对<code>Tensor</code>序列进行 padding 的<code>pad_sequence</code>函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = torch.ones(<span class="number">25</span>, <span class="number">300</span>)</span><br><span class="line">b = torch.ones(<span class="number">22</span>, <span class="number">300</span>)</span><br><span class="line">c = torch.ones(<span class="number">15</span>, <span class="number">300</span>)</span><br><span class="line">padded = utils.rnn.pad_sequence([a, b, c], batch_first=<span class="literal">True</span>)</span><br><span class="line"><span class="comment"># padded: [3, 25, 300]</span></span><br></pre></td></tr></table></figure>
+<p>甚至直接从没有 pad 过的<code>Tensor</code>序列进行 pack 的<code>pack_sequence</code>函数：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">a = torch.tensor([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</span><br><span class="line">b = torch.tensor([<span class="number">4</span>,<span class="number">5</span>])</span><br><span class="line">c = torch.tensor([<span class="number">6</span>])</span><br><span class="line">packed = pack_sequence([a, b, c])</span><br><span class="line"><span class="comment"># packed: PackSequence(data=tensor([1, 4, 6, 2, 5, 3]), batch_sizes=tensor([3, 2, 1]))</span></span><br></pre></td></tr></table></figure>
+<p>这里直接放官方文档示例了。这两个函数的用法很简单，可以省去一些手动加 padding 和 pack 过程，直接从输入的句子<code>Tensor</code>序列得到<code>PackSequence</code>。</p>
+<h1 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h1><ol>
+<li><a href="https://pytorch.org/docs/stable/nn.html#torch.nn.utils.rnn.pack_padded_sequence" target="_blank" rel="noopener">https://pytorch.org/docs/stable/nn.html#torch.nn.utils.rnn.pack_padded_sequence</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/34418001?edition=yidianzixun&amp;utm_source=yidianzixun&amp;yidian_docid=0IVwLf60" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/34418001?edition=yidianzixun&amp;utm_source=yidianzixun&amp;yidian_docid=0IVwLf60</a></li>
+</ol>
+
       
     </div>
 
@@ -617,8 +683,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
 
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -750,6 +825,23 @@
       </div>
 
       
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#pack-padded-sequence"><span class="nav-number">1.</span> <span class="nav-text">pack_padded_sequence</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pad-packed-sequence"><span class="nav-number">2.</span> <span class="nav-text">pad_packed_sequence</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其它-pad-pack-函数"><span class="nav-number">3.</span> <span class="nav-text">其它 pad/pack 函数</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Reference"><span class="nav-number">4.</span> <span class="nav-text">Reference</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
 
       
         <div class="back-to-top motion-element">
@@ -783,7 +875,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">25k</span>
+    <span title="Symbols count total">29k</span>
   
 
   
@@ -792,7 +884,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">42 mins.</span>
+    <span title="Reading time total">48 mins.</span>
   
 </div>
 
