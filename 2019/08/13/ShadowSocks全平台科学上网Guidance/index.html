@@ -160,7 +160,8 @@
 <meta property="og:description" content="前言ShadowSocks 基本认识本文介绍用ShadowSocks这个工具进行科学上网的配置方法，不知道啥是科学上网或者为啥要科学上网的童鞋可以不用再看下去了，相信你也没这个需求。。。 至于为啥选择ShadowSocks呢？笔者表示当年用了很长时间的Lantern突然被封，其它VPN找了半天，免费的速度太慢，收费的又比较贵，对比之下ShadowSocks以稳定著名，价格也能接受，还可以自己租服务">
 <meta property="og:locale" content="zh-HANS">
 <meta property="og:image" content="https://wsntxxn.github.io/2019/08/13/ShadowSocks全平台科学上网Guidance/shadowsocks_to_config_download.png">
-<meta property="og:updated_time" content="2019-08-23T08:13:21.089Z">
+<meta property="og:image" content="https://wsntxxn.github.io/2019/08/13/ShadowSocks全平台科学上网Guidance/shadowsocsX-NG-http.png">
+<meta property="og:updated_time" content="2019-09-13T08:47:56.684Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ShadowSocks 全平台科学上网 Guidance">
 <meta name="twitter:description" content="前言ShadowSocks 基本认识本文介绍用ShadowSocks这个工具进行科学上网的配置方法，不知道啥是科学上网或者为啥要科学上网的童鞋可以不用再看下去了，相信你也没这个需求。。。 至于为啥选择ShadowSocks呢？笔者表示当年用了很长时间的Lantern突然被封，其它VPN找了半天，免费的速度太慢，收费的又比较贵，对比之下ShadowSocks以稳定著名，价格也能接受，还可以自己租服务">
@@ -454,7 +455,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-23 16:13:21" itemprop="dateModified" datetime="2019-08-23T16:13:21+08:00">2019-08-23</time>
+                <time title="Modified: 2019-09-13 16:47:56" itemprop="dateModified" datetime="2019-09-13T16:47:56+08:00">2019-09-13</time>
               </span>
             
           
@@ -497,7 +498,7 @@
               
                 <span class="post-meta-item-text">Symbols count in article: </span>
               
-              <span title="Symbols count in article">5.6k</span>
+              <span title="Symbols count in article">5.5k</span>
             </span>
           
 
@@ -593,42 +594,59 @@
 <p>有些应用可能不那么“智能”，比如 Android Studio 在该走代理连接 Google 更新的时候不走代理，那么可以找找应用里有没有 http/socks5 代理的设置，host设置成 127.0.0.1，端口设置成客户端暴露出来的 http/socks5 端口。如果应用本身不支持 http/socks5 代理，再开全局模式强行让它走代理。</p>
 <h3 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h3><p>在<a href="https://github.com/shadowsocks/shadowsocks-windows/releases" target="_blank" rel="noopener">GitHub官网</a>上下载最新的Windows客户端，解压zip文件得到exe可执行文件，将它和配置文件放在一起，双击打开即可使用。</p>
 <h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><h4 id="shadowsocks-qt5"><a href="#shadowsocks-qt5" class="headerlink" title="shadowsocks-qt5"></a>shadowsocks-qt5</h4><p>以 Ubuntu 为例，在<a href="https://github.com/shadowsocks/shadowsocks-qt5/releases" target="_blank" rel="noopener">GitHub官网</a>上下载最新客户端，安装之后运行，找到导入服务器配置文件的选项，导入下载好的配置文件即可。</p>
-<h4 id="终端开启"><a href="#终端开启" class="headerlink" title="终端开启"></a>终端开启</h4><p>相信 Linux 用户不会仅满足于图形界面，和前面在 VPS 上安装<code>ss</code>服务一样，首先在本地安装<code>ss</code>：</p>
+<h4 id="终端开启"><a href="#终端开启" class="headerlink" title="终端开启"></a>终端开启</h4><p>直接从终端也可以开启ss，和前面在 VPS 上安装<code>ss</code>服务一样，首先在本地安装<code>ss</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install shadowsocks</span><br></pre></td></tr></table></figure>
 <p>然后编辑配置文件，注意和服务器配置信息保持一致：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">"server"</span>: <span class="string">"你的ss服务器地址(ip或者域名)"</span>,</span><br><span class="line">    <span class="attr">"server_port"</span>: <span class="number">45630</span>,</span><br><span class="line">    <span class="attr">"password"</span>: <span class="string">"Tgc6zqgeIA"</span>,</span><br><span class="line">    <span class="attr">"method"</span>: <span class="string">"chacha20-ietf-poly1305"</span>,</span><br><span class="line">    <span class="attr">"remarks"</span>: <span class="string">"aes-256-cfb"</span>,</span><br><span class="line">    <span class="attr">"timeout"</span>: <span class="number">300</span>,</span><br><span class="line">    <span class="attr">"local_port"</span>: <span class="number">1080</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>最后一项<code>local_port</code>是在本机上暴露的 socks5 端口，供其他应用走代理用。</p>
 <p>启动<code>ss</code>进程(以配置文件放在<code>/etc/shadowsocks.json</code>为例)：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sslocal -c /etc/shadowsocks.json -d start</span><br></pre></td></tr></table></figure>
-<h4 id="终端走代理"><a href="#终端走代理" class="headerlink" title="终端走代理"></a>终端走代理</h4><p>上面的设置已经够浏览器科学上网了，然而有时在终端上用 pip/conda/docker 进行 pull/push 时，如果不将源换成国内源，那么速度简直如同便秘一般让人难受，搞不好快要下完时突然连接中断，简直和吃屎一样难受。所以为何不让终端走代理，体验飞一般的感觉？</p>
-<p>当然，一般来说客户端设置成全局模式，终端就可以科学上网了，但是笔者的 ubuntu 偏偏不行。。。所以下面介绍一下用<code>privoxy</code>实现终端走代理：</p>
+<h4 id="终端走代理"><a href="#终端走代理" class="headerlink" title="终端走代理"></a>终端走代理</h4><p>上面的设置已经够浏览器科学上网了，然而有时在终端上用 pip/conda/docker 进行 pull/push 时，如果不将源换成国内源，那么速度简直如同便秘一般让人难受，搞不好快要下完时突然连接中断，简直和吃屎一样难受，于是终端走代理的需求应运而生。</p>
+<p>终端走代理的设置很简单，只要有暴露出来的 http 端口，就可以连接了，暴露的 socks5 端口也可以用其他工具映射到 http 端口上。</p>
+<p>以上面从终端开启<code>ss</code>为例，配置显示暴露了 1080 作为 socks5 端口，于是用<code>privoxy</code>这个工具映射到 http 端口上：</p>
 <p>安装<code>privoxy</code>:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br><span class="line">sudo apt-get install privoxy</span><br></pre></td></tr></table></figure>
 <p>修改配置文件，打开配置文件<code>/etc/privoxy/config</code>，取消这一行的注释：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#listen-address localhost:8118</span></span><br></pre></td></tr></table></figure>
 <p>在底部加上：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">forward-socks5 / localhost:1080 .</span><br></pre></td></tr></table></figure>
-<p>不要忘了最后的点号，8118 是 http 代理的窗口，1080 是刚才终端启动时设置的 socks5 端口，如果是客户端启动，要打开客户端查看 socks5 监听端口，修改成相应的值。</p>
+<p>不要忘了最后的点号，8118 是 http 代理的窗口，1080 是 socks5 端口。</p>
 <p>然后重启<code>privoxy</code>：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo service privoxy restart</span><br></pre></td></tr></table></figure>
 <p>以后开机之后要启动<code>privoxy</code>，将上面的 restart 改成 start 即可。</p>
-<p>最后还要配置两个 bash 变量<code>http_proxy</code>和<code>https_proxy</code>才能实现终端走代理：</p>
+<p>最后配置两个 bash 变量<code>http_proxy</code>和<code>https_proxy</code>就能实现终端走代理：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">"http://localhost:8118"</span></span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">"http://localhost:8118"</span></span><br></pre></td></tr></table></figure>
 <p>笔者则是直接在<code>~/.bashrc</code>中加入了两个函数控制是否走代理：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">proxy_on</span></span>() &#123;</span><br><span class="line">    <span class="built_in">export</span> http_proxy=<span class="string">"localhost:8118"</span></span><br><span class="line">    <span class="built_in">export</span> https_proxy=<span class="string">"localhost:8118"</span></span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">"Proxy started"</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">proxy_off</span></span>()&#123;</span><br><span class="line">    <span class="built_in">unset</span> http_proxy</span><br><span class="line">    <span class="built_in">unset</span> https_proxy</span><br><span class="line">    <span class="built_in">echo</span> -e <span class="string">"Proxy stopped"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>另外，除了<code>privoxy</code>，<code>proxychains</code>也是一个不错的选择，不过笔者并没有用过。</p>
 <h3 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h3><p>Mac 上的客户端和 Windows、Linux 并没有什么明显的区别，同样在<a href="https://github.com/shadowsocks/ShadowsocksX-NG/releases" target="_blank" rel="noopener">GitHub官网</a>上下载最新客户端，导入配置文件即可。</p>
 <p>当然，在 Mac 上也可以打开终端，从终端启动<code>ss</code>，和 Linux 一样，不再赘述。</p>
-<h4 id="终端走代理-1"><a href="#终端走代理-1" class="headerlink" title="终端走代理"></a>终端走代理</h4><p>和 Linux 一样，Mac 上也有终端走代理的需求，实现的方法也差不多，通过<code>privoxy</code>这个工具走 http 代理。</p>
-<p>安装<code>privoxy</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install privoxy</span><br></pre></td></tr></table></figure>
-<p>修改配置文件，在配置文件<code>/usr/local/etc/privoxy/config</code>底部加入 socks5 转发：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">listen-address 0.0.0.0:8118</span><br><span class="line">forward-socks5 / localhost:1080 .</span><br></pre></td></tr></table></figure>
-<p>和 Linux 一样，要打开客户端的偏好设置查看本机 socks5 监听地址，对应修改一下。</p>
-<p>启动<code>privoxy</code>：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /usr/<span class="built_in">local</span>/sbin/privoxy /usr/<span class="built_in">local</span>/etc/privoxy/config</span><br></pre></td></tr></table></figure>
-<p>最后和 Linux 上一样，还需要在终端设置<code>http_proxy</code>和<code>https_proxy</code>变量才能使用：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">"http://localhost:8118"</span></span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">"http://localhost:8118"</span></span><br></pre></td></tr></table></figure>
+<h4 id="终端走代理-1"><a href="#终端走代理-1" class="headerlink" title="终端走代理"></a>终端走代理</h4><p>和 Linux 一样，Mac 上也有终端走代理的需求，也可以用类似的方法也实现，即通过<code>privoxy</code>这个工具将 socks5 端口映射到 http 上。</p>
+<p>如果是<code>ShadowsocksX-NG</code>客户端打开的，那么它已经有暴露的 http 端口了，直接设置<code>http_proxy</code>和<code>https_proxy</code>这两个 bash 变量即可。</p>
+<p>例如，笔者 mac 上的<code>ShadowsocksX-NG</code>的设置是这样的：</p>
+<p><img src="shadowsocsX-NG-http.png" alt="mac客户端监听http端口"></p>
+<p>可见监听的是 http 的 1087 端口，于是</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> http_proxy=<span class="string">"http://localhost:1087"</span></span><br><span class="line"><span class="built_in">export</span> https_proxy=<span class="string">"http://localhost:1087"</span></span><br></pre></td></tr></table></figure>
+<p>即可实现终端走代理</p>
+<!--安装`privoxy`：-->
+<!--```bash-->
+<!--brew install privoxy-->
+<!--```-->
+<!--修改配置文件，在配置文件`/usr/local/etc/privoxy/config`底部加入 socks5 转发：-->
+<!--```bash-->
+<!--listen-address 0.0.0.0:8118-->
+<!--forward-socks5 / localhost:1080 .-->
+<!--```-->
+<!--和 Linux 一样，要打开客户端的偏好设置查看本机 socks5 监听地址，对应修改一下。-->
+<!--启动`privoxy`：-->
+<!--```bash-->
+<!--sudo /usr/local/sbin/privoxy /usr/local/etc/privoxy/config-->
+<!--```-->
+<!--最后和 Linux 上一样，还需要在终端设置才能使用：-->
+<!--```bash-->
+<!--export http_proxy="http://localhost:8118"-->
+<!--export https_proxy="http://localhost:8118"-->
+<!--```-->
 <h3 id="Android"><a href="#Android" class="headerlink" title="Android"></a>Android</h3><p>Android移动端的设置就比较简单了，同样在<a href="https://github.com/shadowsocks/shadowsocks-android/releases" target="_blank" rel="noopener">GitHub官网</a>上直接下载 apk，安装到手机，扫二维码导入服务器配置或者手动输入配置信息即可。</p>
 <h3 id="iOS"><a href="#iOS" class="headerlink" title="iOS"></a>iOS</h3><p>iOS由于不开源，客户端没那么好找。笔者找到的还不错的客户端是：<code>Potatso Lite</code>，可惜的是在国区 App Store 上找不到。简单的办法是，到某宝上买个美区的 App Store 账号，下载即可。下载完之后扫描二维码导入或者手动输入配置信息，系列操作和 Android 一样。</p>
 <hr>
