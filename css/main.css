@@ -1647,7 +1647,7 @@ pre .javascript .function {
   display: block;
   width: 0;
   height: 3px;
-  background: #55f33f;
+  background: #000000;
 }
 .sidebar {
   position: fixed;
@@ -1742,7 +1742,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #8606ff;
+  background: #83ff21;
 }
 .feed-link,
 .chat {
