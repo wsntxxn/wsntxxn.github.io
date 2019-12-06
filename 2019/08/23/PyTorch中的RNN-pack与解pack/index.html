@@ -151,22 +151,22 @@
   };
 </script>
 
-  <meta name="description" content="PyTorch 中处理序列的输入输出时，由于一个 batch 中的序列长度不一样，需要对输入输出进行“打包”(pack)和“解包”(unpack)的操作，主要用到pack_padded_sequence和pad_packed_sequence这两个函数。  对于序列输入，处理起来的一个难题在于输入是一个一个 batch 喂给模型的，而大多数情况下一个 batch 中的各个样本长度不相同。有人说做">
+  <meta name="description" content="PyTorch 中处理序列的输入输出时，由于一个 batch 中的序列长度不一样，需要对输入输出进行“打包”(pack)和“解包”(unpack)的操作，主要用到 pack_padded_sequence 和  pad_packed_sequence 这两个函数。  对于序列输入，处理起来的一个难题在于输入是一个一个 batch 喂给模型的，而大多数情况下一个 batch 中的各个样本长度不相同">
 <meta name="keywords" content="PyTorch,RNN">
 <meta property="og:type" content="article">
 <meta property="og:title" content="PyTorch 中的 RNN: pack 与解 pack">
 <meta property="og:url" content="https://wsntxxn.github.io/2019/08/23/PyTorch中的RNN-pack与解pack/index.html">
 <meta property="og:site_name" content="xxn&#39;s learning">
-<meta property="og:description" content="PyTorch 中处理序列的输入输出时，由于一个 batch 中的序列长度不一样，需要对输入输出进行“打包”(pack)和“解包”(unpack)的操作，主要用到pack_padded_sequence和pad_packed_sequence这两个函数。  对于序列输入，处理起来的一个难题在于输入是一个一个 batch 喂给模型的，而大多数情况下一个 batch 中的各个样本长度不相同。有人说做">
+<meta property="og:description" content="PyTorch 中处理序列的输入输出时，由于一个 batch 中的序列长度不一样，需要对输入输出进行“打包”(pack)和“解包”(unpack)的操作，主要用到 pack_padded_sequence 和  pad_packed_sequence 这两个函数。  对于序列输入，处理起来的一个难题在于输入是一个一个 batch 喂给模型的，而大多数情况下一个 batch 中的各个样本长度不相同">
 <meta property="og:locale" content="zh-HANS">
 <meta property="og:image" content="https://wsntxxn.github.io/2019/08/23/PyTorch中的RNN-pack与解pack/RNN_input.jpg">
 <meta property="og:image" content="https://wsntxxn.github.io/2019/08/23/PyTorch中的RNN-pack与解pack/RNN_input_without_pack.jpg">
 <meta property="og:image" content="https://wsntxxn.github.io/2019/08/23/PyTorch中的RNN-pack与解pack/RNN_input_with_pack.jpg">
 <meta property="og:image" content="https://wsntxxn.github.io/2019/08/23/PyTorch中的RNN-pack与解pack/pack_padded_seq.png">
-<meta property="og:updated_time" content="2019-08-24T09:03:04.130Z">
+<meta property="og:updated_time" content="2019-12-06T04:30:41.894Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="PyTorch 中的 RNN: pack 与解 pack">
-<meta name="twitter:description" content="PyTorch 中处理序列的输入输出时，由于一个 batch 中的序列长度不一样，需要对输入输出进行“打包”(pack)和“解包”(unpack)的操作，主要用到pack_padded_sequence和pad_packed_sequence这两个函数。  对于序列输入，处理起来的一个难题在于输入是一个一个 batch 喂给模型的，而大多数情况下一个 batch 中的各个样本长度不相同。有人说做">
+<meta name="twitter:description" content="PyTorch 中处理序列的输入输出时，由于一个 batch 中的序列长度不一样，需要对输入输出进行“打包”(pack)和“解包”(unpack)的操作，主要用到 pack_padded_sequence 和  pad_packed_sequence 这两个函数。  对于序列输入，处理起来的一个难题在于输入是一个一个 batch 喂给模型的，而大多数情况下一个 batch 中的各个样本长度不相同">
 <meta name="twitter:image" content="https://wsntxxn.github.io/2019/08/23/PyTorch中的RNN-pack与解pack/RNN_input.jpg">
 
 
@@ -457,7 +457,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-08-24 17:03:04" itemprop="dateModified" datetime="2019-08-24T17:03:04+08:00">2019-08-24</time>
+                <time title="Modified: 2019-12-06 12:30:41" itemprop="dateModified" datetime="2019-12-06T12:30:41+08:00">2019-12-06</time>
               </span>
             
           
@@ -532,7 +532,7 @@
 
       
         <blockquote>
-<p>PyTorch 中处理序列的输入输出时，由于一个 batch 中的序列长度不一样，需要对输入输出进行“打包”(<code>pack</code>)和“解包”(<code>unpack</code>)的操作，主要用到<code>pack_padded_sequence</code>和<code>pad_packed_sequence</code>这两个函数。</p>
+<p>PyTorch 中处理序列的输入输出时，由于一个 batch 中的序列长度不一样，需要对输入输出进行“打包”(pack)和“解包”(unpack)的操作，主要用到 <code>pack_padded_sequence</code> 和  <code>pad_packed_sequence</code> 这两个函数。</p>
 </blockquote>
 <p>对于序列输入，处理起来的一个难题在于输入是一个一个 batch 喂给模型的，而大多数情况下一个 batch 中的各个样本长度不相同。有人说做 padding 不就行了吗？直接以长度最长的那个句子为标准，剩下的用 0 pad 到这个长度，但这样会有什么问题呢？</p>
 <p>举个例子，这个 batch 中有 5 个句子：</p>
