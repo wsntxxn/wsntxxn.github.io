@@ -161,7 +161,7 @@
 <meta property="og:locale" content="zh-HANS">
 <meta property="og:image" content="https://wsntxxn.github.io/2020/07/08/NLG-Caption-评价指标总结/scene_graph.png">
 <meta property="og:image" content="https://wsntxxn.github.io/2020/07/08/NLG-Caption-评价指标总结/tuple_sets.png">
-<meta property="og:updated_time" content="2020-07-09T05:39:23.576Z">
+<meta property="og:updated_time" content="2020-07-09T09:51:43.009Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="NLG (Caption) 评价指标总结">
 <meta name="twitter:description" content="评价指标对于我的 audio caption 任务一直是一个 bottleneck，机器自动给生成的 caption 打的分数总是难以反映其质量，在此回顾一下常用的 caption 任务的自动评测指标，包括近年来提出的一些还未广泛使用的新指标。  自然语言生成 (Natural Language Generation) 的评价一直是难题。以句子翻译为例，一个英文句子可能对应好几种中文的表述，即">
@@ -455,7 +455,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2020-07-09 13:39:23" itemprop="dateModified" datetime="2020-07-09T13:39:23+08:00">2020-07-09</time>
+                <time title="Modified: 2020-07-09 17:51:43" itemprop="dateModified" datetime="2020-07-09T17:51:43+08:00">2020-07-09</time>
               </span>
             
           
@@ -582,7 +582,7 @@
 <li>区分性高，不同质量的句子的得分差距要大一些，最好分数值在 0 ~ 1 之间</li>
 <li>用同样的方法得出的人的标注得分应当高于模型输出 (毕竟现在生成模型还没有比人更牛逼)</li>
 <li>计算不应过于复杂，不应用很高昂的代价仅仅做评价这件事</li>
-<li>能反映句子的整体句义相似程度而不是单单词的匹配</li>
+<li>能反映句子的整体句义相似程度而不单单是词的匹配</li>
 <li>最好能有好的 scalability，对大数据集也适用</li>
 <li>针对特定任务要考虑特定任务的目标，比如 image caption 关注 object，audio caption 关注 sound event，video caption 关注 object 的动作，这些关注的事物要在 caption 中描述到，而其余的修饰语没那么重要</li>
 </ul>
