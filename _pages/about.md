@@ -14,7 +14,7 @@ You can find my CV [here](../assets/Curriculum_Vitae.pdf).
 **I am going to graduate in June, 2025 and I am open to job opportunities in 2025. Please feel free to contact me via [LinkedIn](https://www.linkedin.com/in/xuenan-xu-10a03813a) or [Wechat](../images/wechat.jpg).**
 
 
-🚀Research & Projects
+🚀 Research & Projects
 ======
 My research mainly focuses on general **audio understanding and generation**, including tasks such as *audio captioning*, *text to audio grounding*, *audio-text retrieval* and *text to audio generation*. I am also interested in *speech / music understanding and generation*, and their interaction with general audio.
 
@@ -37,7 +37,7 @@ Here are some selected publications or projects:
 
 For my full publication list, please refer to [publication page](/publications/).
 
-📖Education Experience
+📖 Education Experience
 ======
 
 * **2019.9 ~ 2025.6, Ph.D., Shanghai Jiao Tong University, Shanghai, China**
