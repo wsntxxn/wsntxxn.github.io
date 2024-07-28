@@ -75,7 +75,7 @@ candidate = Math.max(candidate, 0);
 candidate += num;
 ```
 
-## Solution 2 - DP (global & local)
+### Solution 2 - DP (global & local)
 
 从动态规划的角度来思考，那么 `dp[i]` 存的是 `nums[0...i]` 子数组的最大子数组和，如何更新 `dp[i+1]` 呢？
 
@@ -109,7 +109,7 @@ public int maxSubarray(int[] nums) {
 }
 ```
 
-## Solution 3 - DP (sum(nums[0...m]) - sum(nums[0...n]))
+### Solution 3 - DP (sum(nums[0...m]) - sum(nums[0...n]))
 
 这种方法不直接存 `nums[0...i]` 的最大子数组和，存的是 `nums[0...i]` 子数组的最小子数组和 (存在`minSum`数组中)，因为子数组 `nums[m+1...n]` 的和可以看成两个从第一个数开始的子数组 (`nums[0...m]` 和 `nums[0...n]`) 的差。这个思想也是[Range Sum Query](https://leetcode-cn.com/problems/range-sum-query-immutable/)的关键，还在[买卖股票](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/)那道题中出现过，也是一种经典思想了。
 

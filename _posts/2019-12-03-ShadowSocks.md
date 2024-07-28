@@ -56,7 +56,7 @@ ss服务器可以通过这些方式获得：
 
 付完款后，还需要将配置文件下载下来，里面包含了各个服务器节点的域名、端口、密码、加密方式等信息，等下配置客户端的时候要用到。
 
-![配置文件下载位置](shadowsocks_to_config_download.png)
+![配置文件下载位置](/images/shadowsocks_to_config_download.png)
 
 另外，各个服务器节点旁边的二维码在配置移动端(Android、iOS)的`ss`客户端时也要用到。
 
@@ -274,7 +274,7 @@ Mac 上的客户端和 Windows、Linux 并没有什么明显的区别，同样�
 
 例如，笔者 mac 上的`ShadowsocksX-NG`的设置是这样的：
 
-![mac客户端监听http端口](shadowsocsX-NG-http.png)
+![mac客户端监听http端口](/images/shadowsocsX-NG-http.png)
 
 可见监听的是 http 的 1087 端口，于是
 

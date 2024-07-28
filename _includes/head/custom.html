@@ -29,4 +29,48 @@
 <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
 <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var codeBlocks = document.querySelectorAll('pre.highlight');
+        codeBlocks.forEach(function(block) {
+            var code = block.querySelector('code');
+            var button = document.createElement('button');
+            var buttonText = document.createTextNode('Copy');
+            button.appendChild(buttonText);
+            button.style.cssText = 'position: absolute; top: 0; left: 0; margin: 0px; padding: 4px 8px; font-size: 14px; background-color: rgba(200, 200, 200, 0.5); color: #000; border: 1px solid #fff; border-radius: 5px; cursor: pointer; transition: all 0.2s ease-in-out;';
+    
+            button.addEventListener('mouseenter', function() {
+                button.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+            });
+    
+            button.addEventListener('mouseleave', function() {
+                button.style.backgroundColor = 'rgba(200, 200, 200, 0.5)';
+            });
+    
+            button.addEventListener('click', function() {
+                var range = document.createRange();
+                range.selectNode(code);
+                window.getSelection().addRange(range);
+                document.execCommand('copy');
+                window.getSelection().removeAllRanges();
+                button.innerText = 'Copied!';
+                button.style.backgroundColor = '#333';
+                button.style.color = '#000';
+                setTimeout(function() {
+                    button.innerText = 'Copy';
+                    button.style.backgroundColor = 'rgba(200, 200, 200, 0.5)';
+                    button.style.color = '#000';
+                }, 3000);
+            });
+    
+            // block.style.cssText = 'position: relative;';
+            block.insertBefore(button, code);
+        });
+        var codeTexts = document.querySelectorAll('pre.highlight');
+        codeTexts.forEach(function(text) {
+            text.style.color = '#000';
+        });
+    });
+</script>
 <!-- end custom head snippets -->
